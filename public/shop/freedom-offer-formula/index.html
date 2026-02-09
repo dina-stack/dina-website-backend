@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | The Freedom Offer Formula™</title>
+    <!-- Stripe Library -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+    --burgundy: #6B1D28;
+    --muted-blue-grey: #D6DDE0;
+    --deep-plum: #4A2C3F;
+    --warm-beige: #F5F1EA;
+    --off-white: #FCFAF7;
+    --charcoal: #2D2926;
+    --upsell-bg: #FFF9E1;
+    --upsell-border: #F3E5AB;
+
+    /* ===== TYPOGRAPHY SCALE ===== */
+
+    --text-base-desktop: 20px;
+    --text-base-mobile: 14px;
+
+    --h1-desktop: 40px;
+    --h1-mobile: 28px;
+
+    --h2-size: 30px;
+    --body-large: 20px;
+    --body-normal: 16px;
+    --tiny-desktop: 10px;
+}
+
+
+       body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--warm-beige);
+    color: var(--charcoal);
+    scroll-behavior: smooth;
+    font-size: var(--text-base-desktop);
+}
+@media (max-width:768px){
+    body{
+        font-size: var(--text-base-mobile);
+    }
+}
+
+
+        h1, h2, h3, h4, .serif {
+            h1{
+    font-size: var(--h1-desktop);
+}
+
+@media(max-width:768px){
+    h1{
+        font-size: var(--h1-mobile);
+    }
+}
+
+h2{
+    font-size: var(--h2-size);
+}
+
+p{
+    font-size: var(--body-normal);
+}
+
+            font-family: 'Playfair Display', serif;
+        }
+
+        .bg-off-white { background-color: var(--off-white); }
+        .text-burgundy { color: var(--burgundy); }
+        .bg-burgundy { background-color: var(--burgundy); }
+        
+      .btn-primary {
+
+    background-color: var(--burgundy);
+    color: #FFFFFF;
+
+    padding: 1.6rem 3.2rem;   /* كان أصغر */
+    
+    font-size: 1rem;          /* أكبر لكن مش مبالغ */
+    font-weight: 700;        /* هذا أهم تعديل */
+
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    transition: all 0.25s ease;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+
+    box-shadow: 0 18px 40px rgba(107,29,40,0.18);
+}
+
+       .btn-primary:hover {
+
+    transform: translateY(-4px);
+    box-shadow: 0 28px 60px rgba(107,29,40,0.28);
+
+}
+
+        .section-padding {
+            padding: 4rem 1.5rem; /* Reduced from 6rem */
+        }
+
+        @media (max-width: 768px) {
+            .section-padding {
+                padding: 3rem 1.25rem; /* Reduced from 4rem */
+            }
+        }
+
+        /* Controls page visibility (Checkout vs Terms) */
+        .view { display: none; }
+        .view.active { display: block; }
+
+        input::placeholder { opacity: 0.4; }
+
+        /* Styling for Separate Stripe Elements Containers */
+        .stripe-input {
+            background-color: var(--off-white);
+            border: 1px solid rgba(45, 41, 38, 0.1);
+            padding: 0.85rem 1rem;
+            border-radius: 2px;
+            min-height: 44px;
+        }
+
+        .prose-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        /* Custom list style */
+        .prose-text li {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Value Anchor Static Box styling */
+        .value-anchor-box {
+            background: #ffffff;
+            border: 1px solid rgba(107, 29, 40, 0.1);
+            padding: 1rem;
+            border-left: 3px solid var(--burgundy);
+        }
+    </style>
+</head>
+<body class="antialiased text-left">
+
+    <!-- Header: Logo removed per request -->
+    <main id="main-content">
+        
+        <!-- Checkout View: Main Landing Section -->
+        <div id="checkout-view" class="view active">
+            
+            <!-- Headline Section adjusted -->
+            <section class="bg-off-white pt-8 md:pt-12"> <!-- Reduced top padding -->
+                <div class="max-w-6xl mx-auto px-4 md:px-6 text-center">
+                    <!-- Reduced Headline Size -->
+                    <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-3 text-burgundy font-sans uppercase tracking-tight max-w-5xl mx-auto">Turn who you already are into an offer people actually want to buy</h1>
+                    
+                    <!-- Subheadline with subtle box and color change, bigger and one line on desktop -->
+                    <div class="inline-block bg-burgundy/10 px-8 py-3 rounded-sm mb-3"> <!-- Reduced padding and margin -->
+                        <p class="text-lg md:text-2xl font-medium text-charcoal/90 font-sans leading-relaxed italic md:whitespace-nowrap">Stop watching everyone else make money online. <strong>Now it’s your turn</strong></p>
+                    </div>
+
+                    <div class="mt-2">
+                        <img src="https://i.ibb.co/27Tykj3C/Freedom-Offer-Formula-4.png" alt="Freedom Offer Formula" class="mx-auto w-full max-w-[440px]">
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-padding pt-6 md:pt-8 bg-off-white min-h-screen"> <!-- Reduced top padding -->
+                <div class="max-w-6xl mx-auto px-4 md:px-6">
+                    <div class="grid lg:grid-cols-5 gap-10 md:gap-16">
+                        
+                        <!-- Left Section: Content and Images -->
+                        <div class="lg:col-span-3">
+                            
+                            <div class="mb-6 text-center">
+                                <h2 class="text-3xl md:text-5xl font-serif text-burgundy mb-2">The Freedom Offer Formula™</h2>
+                                <h3 class="text-xl md:text-2xl font-serif italic text-charcoal/80">Turn what you know into an offer that sells</h3>
+                            </div>
+                            
+                            <!-- Main Product Image - Centered -->
+                            <div class="mb-2 md:mb-3 text-center">
+                                <img src="https://i.ibb.co/JjXv98Wk/Freedom-Offer-Formula-1.png" alt="Freedom Offer Formula" class="w-full max-w-md mx-auto border-none shadow-none rounded-none">
+                            </div>
+
+                            <!-- New Replaced Content - Centered -->
+                            <div class="mb-8 md:mb-10 text-center"> <!-- Reduced margin -->
+                                <p class="text-charcoal/90 mb-4 text-xl md:text-2xl font-medium leading-relaxed">This is perfect if you’re a beginner who wants to <strong class="text-burgundy">build income around who they already are</strong>, without copying someone else.</p>
+                                <button onclick="scrollToForm()" class="btn-primary py-4 px-8 text-xs w-full md:w-auto shadow-lg hover:shadow-xl">I Am So Ready!</button>
+                            </div>
+
+                            <!-- Detailed Sales Copy Sections - REPLACED CONTENT STARTS HERE -->
+                            <div class="mt-8 pt-6 border-t border-charcoal/10 space-y-8 prose-text"> <!-- Reduced padding and spacing -->
+                                
+                                <!-- 1. Headline -->
+                                <div>
+                                    <!-- Bold "Here’s What I Show You" -->
+                                    <h3 class="text-2xl md:text-3xl font-serif font-bold text-burgundy mb-4">Here’s What I Show You:</h3> <!-- Reduced margin -->
+                                    
+                                    <!-- 2. List -->
+                                    <ul class="space-y-4 text-charcoal/80"> <!-- Reduced spacing between items -->
+                                        <li class="flex items-start gap-3">
+                                            <svg class="w-5 h-5 text-green-600 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                            <span><strong>My step-by-step process for figuring out what you can actually sell</strong> using your skills, experiences, and lived lessons (so you stop overthinking and finally move forward).</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <svg class="w-5 h-5 text-green-600 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                            <span><strong>My proven method for packaging your idea into an offer people actually want to</strong> buy, without chasing trends or copying everyone else.</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <svg class="w-5 h-5 text-green-600 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                            <span><strong>My simple framework for pricing your offer with confidence</strong> so your offer feels good for you and like a total no-brainer for your audience (no more “am I charging too much?” stress).</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <svg class="w-5 h-5 text-green-600 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                            <span><strong>How to position and explain your offer so people actually “get it”</strong>, so you stop overthinking what to say and start talking about your offer in a way that feels natural, clear, and easy for someone to say yes to.</span>
+                                        </li>
+                                        <li class="flex items-start gap-3">
+                                            <svg class="w-5 h-5 text-green-600 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                            <span><strong>My full breakdown of how to start showing up online with clarity</strong> so your content stops feeling random and starts pointing people toward your offer naturally – without posting more, or forcing consistency.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <!-- 3. Text CTA & Button -->
+                                <div class="bg-charcoal/5 p-6 rounded-sm text-center my-6 border-t border-charcoal/10 pt-6"> <!-- Reduced padding and margin -->
+                                    <!-- Increased text size -->
+                                    <p class="font-bold text-xl md:text-2xl text-burgundy mb-3">Click here if you want to turn the time you’re already spending on IG into income 👇</p> <!-- Reduced margin-bottom -->
+                                    <button onclick="scrollToForm()" class="btn-primary py-4 px-8 text-xs w-full md:w-auto shadow-lg">I’m So Ready!</button>
+                                </div>
+
+                                <!-- 5. Image (Updated and resized) -->
+                                <div class="my-6 text-center border-t border-charcoal/10 pt-6"> <!-- Reduced margin and padding -->
+                                    <img src="https://i.ibb.co/8DSC51cC/IMG-9639.jpg" alt="Dina Shakir" class="w-1/2 mx-auto border-none shadow-none rounded-none">
+                                </div>
+
+                                <!-- 6. Empathy -->
+                                <div class="space-y-4 pt-6 border-t border-charcoal/10"> <!-- Reduced spacing and padding -->
+                                    <h4 class="text-2xl font-serif font-bold text-burgundy">I know exactly how you feel, btw.</h4>
+                                    <p>You want out of the relentless 9–5 cycle. You’re tired of money stress. You want more time with your family. And you’ve probably thought…</p>
+                                    <div class="pl-4 border-l-2 border-burgundy/20 italic space-y-2 text-charcoal/70"> <!-- Reduced spacing -->
+                                        <p>“I don’t even know where to start.”</p>
+                                        <p>“I’ve tried before and nothing worked.”</p>
+                                        <p>“Everyone online makes it look easy – what am I missing?”</p>
+                                    </div>
+                                </div>
+
+                                <!-- 7. Truth -->
+                                <div class="space-y-4 pt-6 border-t border-charcoal/10"> <!-- Reduced spacing and padding -->
+                                    <!-- Underlined "Here’s the truth" -->
+                                    <p class="font-bold text-lg"><span class="underline decoration-burgundy/30 underline-offset-4">Here’s the truth:</span> making money online is very real, but most of the people teaching it have barely done it themselves.</p>
+                                    <p>That’s not how I work.</p>
+                                    <p>I’ve built two businesses that’ve done over <strong class="text-burgundy">$400,000</strong> in less than two years.</p>
+                                    <p>Every single strategy I teach is something I do in my own business – right now – and has helped over <strong class="text-burgundy">400 entrepreneurs</strong> build their own online businesses.</p>
+                                </div>
+
+                                <!-- 8. Price & CTA (PRECISION UPDATE: MASSIVE PRICE DISPLAY) -->
+                                <div class="space-y-2 pt-12 border-t border-charcoal/10 text-center">
+                                    <div class="flex flex-col items-center justify-center">
+                                        <div style="text-align:center; margin-top:10px;">
+
+    <div style="
+        font-family:'Inter', sans-serif;
+        font-size:42px;
+        font-weight:700;
+        letter-spacing:-1px;
+    ">
+
+        <span style="
+            text-decoration:line-through;
+            color:#000;
+            opacity:.55;
+            margin-right:10px;
+        ">
+            $97
+        </span>
+
+        <span style="color:#6B1D28;">
+            $37
+        </span>
+
+    </div>
+
+    <div style="
+        margin-top:6px;
+        font-size:14px;
+        letter-spacing:1px;
+        opacity:.6;
+    ">
+        Regular price → Today
+    </div>
+
+</div>
+
+                                    </div>
+
+                                    <button onclick="scrollToForm()" class="btn-primary py-5 px-12 text-sm w-full md:w-auto shadow-2xl mt-6">Stop Talking, I’m in!</button>
+
+                                    <p class="text-xs italic opacity-80 mt-4 flex items-center justify-center gap-2"><span class="text-burgundy text-lg">*</span> this is an exclusive launch price that will be increasing soon</p>
+                                </div>
+
+                                <!-- 11. Social Proof (Centered) -->
+                                <div class="pt-6 border-t border-charcoal/10 text-center"> <!-- Reduced padding -->
+                                    <h4 class="text-2xl md:text-4xl italic serif font-normal text-burgundy mb-6 flex items-center justify-center gap-3"> <!-- Reduced margin -->
+                                        <span class="text-xl md:text-2xl not-italic opacity-50">★</span> what others are saying <span class="text-xl md:text-2xl not-italic opacity-50">★</span>
+                                    </h4>
+                                    <!-- Replaced Canva Link with Image Link -->
+                                    <a href="https://ibb.co/ycpBsz06" target="_blank" class="block hover:opacity-95 transition-opacity">
+                                        <img src="https://i.ibb.co/cSwXTWJ6/Testimonials-on-sales-page-1.png" alt="Testimonials on sales page (1)" border="0" class="w-full shadow-sm">
+                                    </a>
+                                </div>
+
+                                <!-- 12. Conclusion -->
+                                <div class="space-y-4 pt-6 border-t border-charcoal/10 text-center"> <!-- Reduced spacing and padding -->
+                                    <p>This isn't a magic button. It's a proven process.<br>
+                                    But if you can follow directions and take imperfect action?</p>
+                                    <p class="font-bold text-xl text-burgundy serif">This will change your life.</p>
+                                </div>
+
+                                <!-- 13. Final Button -->
+                                <div class="pb-6 text-center"> <!-- Reduced padding -->
+                                    <button onclick="scrollToForm()" class="btn-primary py-4 px-8 text-xs w-full md:w-auto shadow-lg">I am Ready to make money online!</button>
+                                </div>
+                            </div>
+                            <!-- REPLACED CONTENT ENDS HERE -->
+
+                        </div>
+
+                        <!-- Right Section: Secure Payment Form (Stripe) -->
+                        <div class="lg:col-span-2">
+                            <!-- Removed 'sticky top-8' class per user request -->
+                            <div id="payment-area" class="bg-white p-6 md:p-10 shadow-2xl rounded-sm border border-charcoal/5 relative">
+                             
+<!-- PRICE HEADLINE -->
+
+<div style="text-align:center; margin-bottom:28px;">
+
+    <div style="
+        font-size:28px;
+        font-weight:700;
+        color:#6B1D28;
+        font-family:'Inter', sans-serif;
+    ">
+        Only 
+        <span style="
+            text-decoration:line-through;
+            color:#000;
+            opacity:.75;
+            margin:0 6px;
+        ">
+            $97
+        </span>
+
+        <span style="color:#6B1D28;">
+            $37 Today
+        </span>
+    </div>
+
+    <div style="
+        font-size:18px;
+        margin-top:6px;
+        color:#000;
+        font-weight:500;
+    ">
+        (Save $60 Today)
+    </div>
+
+    <p style="
+        margin-top:14px;
+        font-size:16px;
+        line-height:1.5;
+        max-width:420px;
+        margin-left:auto;
+        margin-right:auto;
+    ">
+       Unlock <strong style="color:#6B1D28;">The Freedom Offer Formula™</strong>
+and instantly access 
+<span style="color:#6B1D28; font-weight:700; letter-spacing:.5px;">
+2 BONUSES
+</span>
+so you’re not wasting weeks second-guessing yourself.
+
+    </p>
+
+</div>
+
+    <div class="flex justify-between items-center mb-2">
+        <div>
+
+        <div>
+        
+</div> <!-- 🔴 مهم جداً -->
+
+
+          
+</div>
+
+                                   <div style="
+background:#faf8f5;
+padding:22px;
+border-radius:8px;
+margin-bottom:24px;
+border:1px solid rgba(0,0,0,0.06);
+">
+
+    <div style="
+    font-weight:800;
+    color:#6B1D28;
+    font-size:15px;
+    letter-spacing:.8px;
+    margin-bottom:14px;
+    text-transform:uppercase;
+">
+    Only <span style="font-weight:900;">2 BONUSES</span> Included
+</div>
+
+    <!-- BONUS 1 -->
+    <div style="
+        font-weight:600;
+        font-size:14px;
+        margin-bottom:10px;
+        display:flex;
+        align-items:flex-start;
+        gap:8px;
+    ">
+        <span style="color:#E6B800;">★</span>
+        Bonus #1: Your First Sale Game Plan (Without Overcomplicating It)
+    </div>
+
+    <!-- BONUS 2 -->
+    <div style="
+        font-weight:600;
+        font-size:14px;
+        display:flex;
+        align-items:flex-start;
+        gap:8px;
+    ">
+        <span style="color:#E6B800;">★</span>
+        Bonus #2: Value Stack Template (so your offer becomes a MAGNET)
+    </div>
+
+</div>
+
+                                </div>
+                                
+                                <form id="payment-form" class="space-y-6 text-left">
+                                    <div>
+                                     <label style="
+font-size:14px;
+font-weight:500;
+letter-spacing:1.2px;
+text-transform:uppercase;
+display:block;
+margin-bottom:8px;
+color:#000;
+opacity:.65;
+">
+
+Step 1: Contact Information</label>
+                                        <input type="text" id="name" class="w-full bg-off-white border border-charcoal/10 px-4 py-3 focus:outline-none focus:border-burgundy transition-colors text-sm" placeholder="Full Name" required>
+                                        <input type="email" id="email" class="w-full bg-off-white border border-charcoal/10 px-4 py-3 focus:outline-none focus:border-burgundy mt-3 transition-colors text-sm" placeholder="Email Address" required>
+                                    </div>
+                                    
+                                    <div class="text-left">
+  <label style="
+font-size:14px;
+font-weight:500;
+letter-spacing:1.2px;
+text-transform:uppercase;
+display:block;
+margin-bottom:8px;
+color:#000;
+opacity:.65;
+">
+
+Step 2: Card Details</label>
+                                        
+                                        <!-- Card Number Input -->
+                                        <div>
+                                            <label class="text-[9px] uppercase opacity-40 block mb-1">Card Number</label>
+                                            <div id="card-number-element" class="stripe-input"></div>
+                                        </div>
+
+                                        <!-- Expiry and CVC Inputs (Side by side) -->
+                                        <div class="grid grid-cols-2 gap-3 text-left">
+                                            <div>
+                                                <label class="text-[9px] uppercase opacity-40 block mb-1 text-left">Expiry (MM/YY)</label>
+                                                <div id="card-expiry-element" class="stripe-input text-left"></div>
+                                            </div>
+                                            <div>
+                                                <label class="text-[9px] uppercase opacity-40 block mb-1 text-left">CVC</label>
+                                                <div id="card-cvc-element" class="stripe-input text-left"></div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Stripe Error Feedback -->
+                                        <div id="error-message" style="font-size:12px" text-red-600 mt-2 font-medium"></div>
+                                    </div>
+
+                                    <!-- PRECISION UPDATE: THE PROFESSIONAL UPSELL BOX -->
+                                    <div class="bg-[#FFF9E1] border-2 border-[#F3E5AB] p-7 rounded-sm my-10">
+
+                                        <img src="https://i.ibb.co/mCVRDJZm/Device-Mmockups-1.png"
+
+alt="Freedom Workbook"
+style="
+display:block;
+margin:0 auto 22px auto;
+max-width:320px;
+width:100%;
+"
+ border-radius: 6px; box-shadow: 0 6px 18px rgba(0,0,0,0.12);">
+
+                                        
+                                        <h5 class="text-lg font-semibold
+ text-burgundy mb-2 text-center uppercase tracking-tight">[HIGHLY RECOMMENDED] Important:</h5>
+                                        <p style="
+font-size:14px;
+line-height:1.6;
+margin-bottom:18px;
+text-align:center;
+color:#2D2926;
+">
+
+<span style="
+color:#6B1D28;
+font-weight:700;
+letter-spacing:.3px;
+">
+[HIGHLY RECOMMENDED]
+</span>
+
+Important: If you want to save yourself hours of overthinking, rewriting, and second-guessing, add the Freedom Offer Workbook™ to your order.
+
+<br><br>
+
+When you snag this, you will get the exact guided prompts and exercises from the guide in one clean, printable space so you can actually do the work instead of rereading and highlighting the same pages.
+
+<br><br>
+
+Working from the workbook makes it <strong>SO much easier</strong> to walk through every framework step-by-step.
+
+<br><br>
+
+You just print these pages, and start!
+
+<br><br>
+
+<strong style="color:#6B1D28;">
+[$10 one-time add-on]
+</strong>
+
+</p>
+
+                                        <div class="bg-white/50 p-4 border border-[#F3E5AB] rounded-sm">
+                                            <label class="flex items-center gap-3 cursor-pointer group">
+                                                <input type="checkbox" id="upsell-checkbox" class="accent-burgundy w-5 h-5 shrink-0">
+                                                <div class="flex flex-col">
+                                                    <span class="text-sm font-semibold text-charcoal group-hover:text-burgundy transition-colors uppercase tracking-tight">Yes! Add to my order for only $10</span>
+                                                    <span style="font-size:12px" opacity-60 line-through">Regular Price: $47</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="pt-2 text-left">
+                                        <label class="flex items-start gap-3 cursor-pointer group mb-6">
+                                            <input type="checkbox" class="mt-1 accent-burgundy shrink-0" required>
+                                            <span style="font-size:15px; line-height:1.6;" class="opacity-80 group-hover:opacity-100 transition-opacity"">
+                                                I agree to the Freedom Offer Formula™ <button type="button" onclick="showView('terms')" class="underline">Terms of Purchase</button> and Privacy Policy.
+                                            </span>
+                                        </label>
+                                     <div style="
+background:#faf8f5;
+padding:20px;
+border-radius:8px;
+margin-bottom:18px;
+border:1px solid rgba(0,0,0,0.06);
+">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:6px;
+">
+
+<span style="
+font-size:15px;
+letter-spacing:.5px;
+">
+Order Total
+</span>
+
+<span id="old-price"
+style="
+text-decoration:line-through;
+opacity:.85;
+font-size:18px;
+font-weight:500;
+color:#000;
+">
+$97
+</span>
+
+</div>
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+">
+
+<span style="
+font-size:18px;
+font-weight:600;
+">
+Today
+</span>
+
+<span id="total-price"
+style="
+font-size:34px;
+font-weight:700;
+color:#6B1D28;
+letter-spacing:-.5px;
+">
+$37
+</span>
+
+</div>
+
+</div>
+
+
+                                        <button type="submit" class="btn-primary w-full py-5 text-sm shadow-xl font-bold">Complete My Order</button>
+                                        
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Terms View -->
+        <div id="terms-view" class="view">
+            <section class="section-padding pt-24 md:pt-32 bg-off-white min-h-screen text-left">
+                <div class="max-w-4xl mx-auto px-4 md:px-6 text-left">
+                    <button onclick="showView('checkout')" class="text-xs uppercase tracking-widest opacity-40 hover:opacity-100 mb-10 md:mb-12 flex items-center gap-2 transition-opacity text-left">
+                        ← Back to checkout
+                    </button>
+                    
+                    <h1 class="text-3xl md:text-5xl font-semibold mb-2 text-left">Scaling with Dina</h1>
+                    <p class="serif italic text-burgundy mb-10 md:mb-12 text-left">Terms and Conditions • Last Updated on August 30th, 2025</p>
+
+                    <div class="prose prose-sm text-charcoal/80 space-y-6 leading-relaxed text-left">
+                        <p><strong>1. AGREEMENT:</strong> By completing this purchase and making your payment (or part payment if paying in instalments), you acknowledge and agree that you have read these Terms and Conditions, our Privacy Policy, and Disclaimer.</p>
+
+                        <p><strong>2. PROGRAM ENTITY:</strong> This program is an “all or nothing” purchase. There are no part payments for part delivery of content – and there is no option for a bespoke course or part access to the content. This is not a pay by month, or "pay-for-partial-access" program.</p>
+
+                        <p><strong>3. PRICE:</strong> The price of the course is currently £$3,400 and subject to change at any time. Dina Shakir reserves the right to run regular promotions, special offers and / or make scholarships and discounts available to potential clients at her discretion.</p>
+
+                        <p><strong>4. SUPPORT CALLS:</strong> Days and times of the support calls are given in your Welcome Email and are subject to change.</p>
+
+                        <p><strong>5. PAYMENT:</strong> Clients who pay in full will receive x3 45-minute 1-2-1 strategy sessions with Dina, an extra 3 months of membership (meaning you will be a Scaling with Systems live student for a full 6 months, rather than 3), and 1 piece of branding. You can choose between a logo, a Facebook profile cover image, or a Facebook group cover image.<br><br>Clients who opt for a Payment Plan will not get the 1-2-1 strategy session with Dina Shakir. Once the first instalment is paid, the remaining instalments are due on the same day of the following months. For example, if you pay the first instalment on 1st June, then the second instalment is due on 1st July and the next instalment on 1st August of the same year, etc. (Where these dates fall on a week-end, the payment is due on the previous week day). When paying in installments, you understand that you are agreeing to pay the full course price as shown on your order form or invoice, not just the first month, and agree to honour each payment until fully paid. A lack of results is not a reason to demand payments are stopped, as results are subject to the amount of time and effort the client has put into the course and work carried out as a result of the learnings, and not on the course itself. No exceptions can be made for this, especially in cases when clients are found to have shown little effort in the course by not watching the video lessons and / or not showing up the weekly calls.</p>
+
+                        <p><strong>6. FAILED PAYMENTS:</strong> If your payment or card is declined for any reason (insufficient credit, closed, expired, or other reason), Stripe will automatically re-try your card within 3 working days. You agree to ensure funds are available for the re-try. Failure to do so will cause your access to the program to be suspended immediately. This means you will no longer have access to the course video lessons, Facebook group or weekly support calls.</p>
+
+                        <p><strong>7. REFUNDS:</strong> Because of the nature of the content delivery, which means clients get instant access to the full course content immediately at the time of enrolling, Scaling with Systems has a strict no-refunds policy.</p>
+
+                        <p><strong>8. SUPPORT:</strong> Questions (in between strategy calls) are to be submitted via the Facebook group and not via Facebook Private Message to Dina Shakir. This is to ensure that all course members benefit from the answer and to ensure Dina is able to manage her time and energy. Dina will always do her best to jump on any questions in the group as soon as she sees them, but please appreciate that we cannot guarantee an immediate reply. Questions posted after 4.30pm UK time will most likely be looked at on the next working day. Where Dina engages over Facebook Messanger with a client for support, this is an exception and not the rule, and should not come to be expected.</p>
+
+                        <p><strong>9. MARKETING:</strong> By joining this course, you agree to let Dina Shakir share any of your posts / results / testimonials / or any messages to Dina stating how you are benefitting from the course to her social media audience as marketing for future clients. You also agree that you are happy for Dina or a member of her team to share the news of your enrolment to her social media audience and that you are happy for Dina to use your current profile picture in the enrolment news post on her profile, as well as inside any of her paid or non-paid groups.</p>
+
+                        <p><strong>10. ATTITUDE AND COACHABILITY:</strong> When joining a coaching course with a mindset coaching element to it, it is paramount that each student is committed to bringing their best self to every interaction with the coach and other course members. The Facebook group rules state clearly that we will not accept any bullying or attacks on any of the members, but we also expect from each member to show up with a positive and can-do attitude to every call and interaction. We will not tolerate slander, rudeness or a toxic “problem for every solution” attitude that affects the high vibe of the community. This is a community of motivated go-getters; members who affect the highly positive environment of the group dynamic by constant moaning and negativity may be asked to leave. They will get ONE warning to do so, then – if the behaviour continues - they will be asked to leave with no refund.</p>
+
+                        <p><strong>11. CONFIDENTIALITY AND SENSITIVE INFORMATION:</strong> As part of this course, students have access to a Facebook Support Group as well as live group video calls, held weekly for the duration of 12 weeks from the Membership Start Date (date of enrolment). In the Facebook Support Group and during the weekly calls, confidential and sensitive information may be shared by the students. All students understand and agree that all and any information shared in the Facebook group or during the support calls is to be treated as sensitive and confidential.</p>
+
+                        <p><strong>12. LICENCE TO CONTENT:</strong> You are purchasing one licence for personal viewing and implementation of the material in the course. If you use the material for any other purpose other than personal study, (such making derivative materials, selling, sharing with others who are not course members, training others in the course system, displaying it publicly or on the internet, and/or sharing your login credentials), you will be in full violation of copyright laws and contract law. Licenses for these items are available for purchase, starting at $10,000. If you choose to take these actions, you will be notified and billed accordingly.</p>
+
+                        <p><strong>13. CHANGES TO THESE TERMS:</strong> These Terms of Purchase are subject to change without prior notice. In the event that any changes are made, the new terms supersede old terms with immediate effect. As and when revisions happen, the students will be notified and the revised Terms & Conditions shall be posted on the Members Area immediately.</p>
+
+                        <p><strong>14. DISCLAIMER AND LIMITATION OF WARRANTY:</strong> You are in the best position to understand your unique circumstances, and you understand and agree that a general informational course such as this cannot be completely tailored to every single person. This course is not a substitute for financial, legal, medical, mental health, or other type of advice that is needed from a qualified professional. You are advised to use your best judgment and seek the advice of such professionals in implementing the principles of this course. As the course success is very much reliant on the participant’s self -discipline and action taken on the content shared, no guarantees are made as to the outcome for the use of this course.</p>
+
+                        <p><strong>15. WAIVER OF LIABILITY AND GIVERNING LAW:</strong> This contract is governed by UK Law without regard to its conflicts of laws principles. You agree without reservation to personal jurisdiction in the UK courts in the event of dispute concerning this agreement or your use of this course. This Membership site and course, including any content or information contained within it, is provided “as is” , with all faults, with no representations or warrantied of any kind, either expressed or implied. This includes but is not limited to – the implied warranties of merchantability, fitness for a particular purpose, and non infringement. You assume total responsibility and risk for your use of this website / course, and any related services or recommended subcontractors or hyperlinked websites.</p>
+
+                        <p><strong>16. DAMAGES:</strong> Scaling with Systems, its affiliates, owners and sponsors are neither responsible nor liable for any direct, indirect, incidental, consequential, special, exemplary or other damages arising out of correlating in any way to the site, the course, any site-related services, content, or information contained within the site, and / or any hyperlinked website or recommended subcontractor. Your sole remedy for dissatisfaction with the course, site, site-related services, and / or any hyperlinked websites is to stop using the sites and / or those services. In any event that damages are awarded, they are limited to the contract price. No lawyer’s fees, costs, statutory damages will be paid.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer: Copyright and Terms Link -->
+    <footer class="bg-off-white pt-10 pb-10 border-t border-charcoal/5 text-center">
+        <div class="max-w-6xl mx-auto px-4 md:px-6">
+            <div class="mb-4 text-center">
+                <button onclick="showView('terms')" style="font-size:12px" uppercase tracking-widest font-bold opacity-60 hover:text-burgundy transition-colors text-center">Terms & Conditions</button>
+            </div>
+            <p class="text-[9px] uppercase tracking-widest opacity-40 text-center">Copyright 2025 - "Dina Shakir Coaching" - All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        /**
+         * Navigation system between views
+         */
+        function showView(viewName) {
+            document.querySelectorAll('.view').forEach(view => {
+                view.classList.remove('active');
+            });
+            const targetView = document.getElementById(viewName + '-view');
+            if(targetView) targetView.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /**
+         * Smooth scroll function for action buttons
+         */
+        function scrollToForm() {
+            const paymentArea = document.getElementById('payment-area');
+            paymentArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        /**
+         * Initialize Stripe Split Elements
+         */
+        const stripe = Stripe("pk_live_51Ok6K5BG8FVpgm37mfwhvBpszG0l6KYDNgIK6ymj3liiNE0rBbZlA1li46LNCHSduGVSqois0zUEjG7nKNeTY9nc00Y7w364ig");
+        const elements = stripe.elements();
+        
+        const elementStyle = {
+            base: {
+                color: "#2D2926",
+                fontFamily: '"Inter", sans-serif',
+                fontSmoothing: "antialiased",
+                fontSize: "14px",
+                "::placeholder": {
+                    color: "#aab7c4"
+                }
+            },
+            invalid: {
+                color: "#fa755a",
+                iconColor: "#fa755a"
+            }
+        };
+
+        // 1. Card Number Field
+        const cardNumber = elements.create('cardNumber', { style: elementStyle });
+        cardNumber.mount('#card-number-element');
+
+        // 2. Expiry Field (Handles MM/YY logic automatically)
+        const cardExpiry = elements.create('cardExpiry', { style: elementStyle });
+        cardExpiry.mount('#card-expiry-element');
+
+        // 3. CVC Field
+        const cardCvc = elements.create('cardCvc', { style: elementStyle });
+        cardCvc.mount('#card-cvc-element');
+
+        const form = document.getElementById("payment-form");
+/* ===== TOTAL PRICE LOGIC ===== */
+
+const upsellCheckbox = document.getElementById("upsell-checkbox");
+const totalPrice = document.getElementById("total-price");
+const oldPrice = document.getElementById("old-price");
+
+upsellCheckbox.addEventListener("change", () => {
+
+    if (upsellCheckbox.checked) {
+
+        totalPrice.innerText = "$47";
+        oldPrice.innerText = "$144";
+
+    } else {
+
+        totalPrice.innerText = "$37";
+        oldPrice.innerText = "$97";
+    }
+});
+
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button');
+            const errorElement = document.getElementById("error-message");
+            
+            btn.disabled = true;
+            btn.innerText = 'Processing Securely...';
+            errorElement.textContent = "";
+
+            // Create PaymentMethod using the split elements
+            const { paymentMethod, error } = await stripe.createPaymentMethod({
+                type: "card",
+                card: cardNumber,
+                billing_details: {
+                    name: document.getElementById("name").value,
+                    email: document.getElementById("email").value,
+                },
+            });
+
+            if (error) {
+                errorElement.textContent = error.message;
+                btn.disabled = false;
+                btn.innerText = 'Complete My Order';
+                return;
+            }
+
+            // Send ID to backend for processing
+            try {
+    const response = await fetch("/pay", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            paymentMethodId: paymentMethod.id,
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            addWorkbook: document.getElementById("upsell-checkbox")?.checked || false
+        }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+        window.location.href = result.redirect;
+    } else {
+        errorElement.textContent = result.error || "Payment failed.";
+        btn.disabled = false;
+        btn.innerText = 'Complete My Order';
+    }
+
+} catch (err) {
+    console.error(err);
+    btn.disabled = false;
+    btn.innerText = 'Complete My Order';
+}
+        });
+    </script>
+</body>
+</html>
+

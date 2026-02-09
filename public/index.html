@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dina Shakir</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-red:#6B1E2B;
+      --brand-beige:#F6F1EA;
+      --text-main:#000000;
+      --text-muted:rgba(0,0,0,0.62);
+      --card:#FFFFFF;
+      --border:rgba(0,0,0,0.10);
+      --serif:"Playfair Display", serif;
+      --sans:Inter, sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:var(--sans);
+      background:var(--brand-beige);
+      color:var(--text-main);
+      overflow-x:hidden;
+    }
+
+    /* HEADER */
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:var(--brand-beige);
+
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
+      padding:18px 32px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+    }
+
+    .logo img{
+      height:40px;
+      width:auto;
+      display:block;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:46px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:var(--text-main);
+      font-size:14px;
+      font-weight:500;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      opacity:0.85;
+      transition:opacity 0.2s ease, color 0.2s ease;
+    }
+
+    nav a:hover{
+      opacity:1;
+      color:var(--brand-red);
+    }
+
+    /* HERO */
+    .hero{
+      position:relative;
+      min-height:90vh;
+      display:flex;
+      align-items:center;
+      overflow:hidden;
+
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(246,241,234,0.98) 0%,
+          rgba(246,241,234,0.98) 40%,
+          rgba(246,241,234,0.70) 52%,
+          rgba(246,241,234,0.30) 60%,
+          rgba(246,241,234,0.00) 66%
+        ),
+        linear-gradient(
+          0deg,
+          rgba(246,241,234,0.25),
+          rgba(246,241,234,0.25)
+        ),
+        url("https://i.ibb.co/4RS7RnH3/IMG-9563.jpg");
+
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-position:right -180px top 18%;
+
+
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:radial-gradient(
+        circle at 30% 30%,
+        rgba(0,0,0,0.00) 0%,
+        rgba(0,0,0,0.03) 55%,
+        rgba(0,0,0,0.06) 100%
+      );
+      opacity:0.45;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      width:min(720px, 92vw);
+      margin-left: clamp(24px, 6vw, 120px);
+      padding:56px 0 44px;
+    }
+
+    .hero h1{
+      font-family:var(--serif);
+      font-size:clamp(2.6rem, 5vw, 4.2rem);
+      line-height:1.03;
+      letter-spacing:-0.02em;
+      color:var(--text-main);
+      margin-bottom:36px;
+
+
+    }
+.subcopy strong{
+  color:#000;
+}
+
+    .hero .subcopy{
+      font-size:1.12rem;
+      color:#000;
+      max-width:560px;
+      line-height:1.5;
+      margin-bottom:34px;
+    }
+
+    .hero .subcopy .tight{
+      line-height:1.5;
+      display:block;
+      margin-bottom:14px;
+    }
+
+    .hero .btn{
+      display:inline-block;
+      background:var(--brand-red);
+      color:#ffffff;
+      padding:18px 34px;
+      text-decoration:none;
+      font-weight:500;
+      border-radius:8px;
+      letter-spacing:0.04em;
+      box-shadow:0 14px 30px rgba(0,0,0,0.12);
+      transition:transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hero .btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 16px 34px rgba(0,0,0,0.14);
+    }
+
+    /* OVERVIEW */
+    #overview{
+      background:var(--brand-beige);
+      padding:40px 24px 72px; /* reduced top gap from hero */
+    }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      text-align:center;
+    }
+
+    .overview-headline{
+      font-family:var(--serif);
+      font-size:clamp(1.9rem, 3.2vw, 2.7rem);
+      color:var(--brand-red);
+
+      font-weight:600;
+      margin-bottom:28px;
+
+    }
+
+    .overview-body{
+      max-width:920px;
+      margin:0 auto;
+      font-size:1.08rem;
+      line-height:1.7;
+
+      color:var(--text-muted);
+    }
+
+    .overview-body strong{
+      color:var(--text-main);
+    }
+
+    .cards{
+      margin-top:36px;
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:22px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:28px 26px 30px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    .card-title{
+      color:var(--brand-red);
+      font-weight:700;
+      margin-bottom:14px;
+      font-family:var(--serif);
+      font-size:1.35rem;
+    }
+
+    .card-text{
+      color:var(--text-muted);
+      line-height:1.5;
+      margin-bottom:auto;
+      max-width:360px;
+    }
+
+    .card-btn{
+      margin-top:26px; /* spacing above buttons */
+      background:var(--brand-red);
+      color:#ffffff;
+      padding:14px 22px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      min-width:120px;
+      text-align:center;
+      display:inline-block;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width:1000px){
+      header{
+        padding:16px 18px;
+      }
+      nav ul{
+        gap:20px;
+      }
+    }
+
+    @media (max-width:900px){
+      .hero{
+        min-height:85vh;
+        background-position: 94% 10%;
+      }
+      .hero-content{
+        margin-left:24px;
+        padding:64px 0 44px;
+      }
+      .cards{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <a class="logo" href="#top" aria-label="Home">
+      <img src="https://i.ibb.co/Wvt1yxhF/13-png.png" alt="Dina Shakir logo">
+    </a>
+
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#success-stories">SUCCESS STORIES</a></li>
+        <li><a href="/shop">SHOP</a></li>
+        <li><a href="/work-with-me">WORK WITH ME</a></li>
+        <li><a href="#follow">FOLLOW</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-content">
+      <h1>
+        Build a business that<br>
+        pays you to be <strong><em>yourself</em></strong>
+      </h1>
+
+      <div class="subcopy">
+        <span class="tight">
+          Turn your <strong><em>natural talents</em></strong> into a premium offer people beg to buy<br>
+          and build a freedom-based business that <strong><em>fits your life</em></strong><br>
+          (not the other way around)
+        </span>
+
+        You’re not here to build like everyone else.<br><br>
+        <strong>You’re here to build something that actually feels like <em>you</em>.</strong>
+      </div>
+
+      <a class="btn" href="/free-guide">Download My Free Clarity Framework</a>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <div class="container">
+
+      <div class="overview-headline">
+        To The Woman Who Is Ready To Build A Business From Alignment Rather Than Hustle
+      </div>
+
+      <div class="overview-body">
+        <strong><em>Who you are is your superpower</em></strong>
+        <br><br>
+
+        Your authenticity is the part of you that can’t be replicated. Your perspective. Your lived experience.
+        <br>
+        The energy you bring into a room. It’s what gives your business its heartbeat.
+        <br><br>
+
+        Your authenticity is your compass. When you reconnect to it, everything starts to align.
+        <br><br>
+
+        You’re not here to build like everyone else.
+        <br>
+        <strong>YOU’RE HERE TO BUILD SOMETHING THAT FEELS LIKE <em>YOU</em>.</strong>
+        <br><br>
+
+        If you’re ready to realign your business with who you are, here are three ways to begin:
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="card-title">Start with Clarity</div>
+          <div class="card-text">
+            Download the free starter guide to uncover what you already carry, and how it can become a clear, sellable offer.
+          </div>
+          <a href="/free-guide" class="card-btn">Start</a>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Build With Confidence</div>
+          <div class="card-text">
+            Explore the digital suite of guides and courses designed to help you structure your ideas into income and build systems for growth.
+          </div>
+          <a href="/shop" class="card-btn">Build</a>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Grow With Support</div>
+          <div class="card-text">
+            Work with me inside deeper containers for women who are ready to stop forcing and transform their passion into a thriving revenue engine.
+          </div>
+          <a href="/work-with-me" class="card-btn">Grow</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Placeholder anchors for nav (we'll build these sections next) -->
+  <div id="about"></div>
+  <div id="success-stories"></div>
+  <div id="shop"></div>
+  <div id="work-with-me"></div>
+  <div id="follow"></div>
+  <div id="contact"></div>
+
+  <!-- Placeholder free guide anchor -->
+  <div id="free-guide"></div>
+
+</body>
+</html>
+
