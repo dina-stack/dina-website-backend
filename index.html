@@ -393,6 +393,152 @@
 
     </div>
   </section>
+<!-- ABOUT -->
+<section id="about" class="about">
+  <div class="about-wrap">
+
+    <!-- IMAGE -->
+    <div class="about-media">
+      <div class="about-oval">
+        <img src="https://i.ibb.co/5gydGdCD/Image.png" alt="Dina Shakir portrait">
+      </div>
+    </div>
+
+    <!-- COPY -->
+    <div class="about-copy">
+
+      <div class="about-headlines">
+
+        <div class="about-red-line">YOU WANT FREEDOM</div>
+        <div class="about-red-line">YOU WANT SUCCESS ON YOUR TERMS</div>
+
+        <div class="about-spacer-tight"></div>
+
+        <div class="about-now">
+          But right now? It feels overwhelming and a little out of reach.
+        </div>
+
+        <div class="about-spacer-tight"></div>
+
+        <div class="about-red-line">I GET IT, I’VE BEEN THERE TOO.</div>
+
+        <div class="about-spacer-tight"></div>
+
+      </div>
+
+      <p class="about-paragraph">
+        I’m Dina, a former corporate executive who walked away from a six-figure career in AI and Big Data to build an online business on my own terms. I spent years working 16-hour days and leading global teams in roles that “looked impressive” on paper but slowly drained my energy and sense of direction.
+      </p>
+
+      <p class="about-paragraph">
+        When I left corporate, I didn’t have a clear niche or a perfect plan. I tried to build a business the “right” way, followed strategies that didn’t fit, and learned firsthand what happens when you build from confusion instead of clarity. Over time, I rebuilt by simplifying everything. Clear offers, supportive systems, and a scalable structure that created stability instead of burnout.
+      </p>
+
+      <p class="about-paragraph">
+        Today, I help high-capacity women do the same. I’m known for helping women turn their skills and experience into aligned offers, design income that feels sustainable, and build businesses that support their lives instead of consuming them.
+      </p>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ABOUT */
+.about{
+  background:#E9DFD2;
+  padding:96px 24px;
+}
+
+.about-wrap{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:460px 1fr;
+  gap:56px;
+  align-items:center;
+}
+
+.about-media{
+  display:flex;
+  justify-content:center;
+}
+
+.about-oval{
+  width:420px;
+  height:560px;
+  border-radius:999px;
+  overflow:hidden;
+  background:#E9DFD2;
+  box-shadow:0 18px 40px rgba(0,0,0,0.08);
+}
+
+.about-oval img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+
+.about-copy{
+  max-width:660px;
+  text-align:left;
+}
+
+.about-headlines{
+  font-family: "Playfair Display", serif;
+  line-height:1.5;
+}
+
+/* FORCE RED — NO INHERITANCE */
+.about-red-line{
+  color:#6B1E2B;
+  font-size:1.9rem;
+  font-weight:600;
+  text-transform:uppercase;
+}
+
+/* Emotional sentence */
+.about-now{
+  font-family:Inter, sans-serif;
+  font-size:1.34rem;
+  line-height:1.5;
+  color:var(--text-muted);
+  font-weight:400;
+  text-transform:none;
+}
+
+/* Tight spacing */
+.about-spacer-tight{
+  height:0.75em;
+}
+
+.about-paragraph{
+  font-size:1.08rem;
+  line-height:1.5;
+  color:var(--text-main);
+  margin-bottom:16px;
+}
+
+.about-paragraph:last-child{
+  margin-bottom:0;
+}
+
+@media (max-width:900px){
+  .about{
+    padding:80px 24px;
+  }
+  .about-wrap{
+    grid-template-columns:1fr;
+    gap:36px;
+  }
+  .about-oval{
+    width:min(360px, 92vw);
+    height:500px;
+  }
+}
+</style>
 
   <!-- Placeholder anchors for nav (we'll build these sections next) -->
   <div id="about"></div>
