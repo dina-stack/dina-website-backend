@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <title>Page</title>
 </head>
+<div id="footer"></div>
+
+<script>
+fetch("/footer.html")
+.then(res => res.text())
+.then(data => {
+  document.getElementById("footer").innerHTML = data;
+});
+</script>
+
 <body>
 
 <h1>Page</h1>

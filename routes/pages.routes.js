@@ -34,5 +34,17 @@ router.get("/work-with-me", (req, res) => {
   res.sendFile(path.join(root, "work-with-me", "index.html"));
 });
 
+router.get("/terms_conditions", (req, res) => {
+  res.sendFile(path.join(root, "terms_conditions.html"));
+});
+
+router.get("/privacy_policy", (req, res) => {
+  res.sendFile(path.join(root, "privacy_policy.html"));
+});
+
+router.get("/footer.html", (req, res) => {
+  res.sendFile(path.join(root, "footer.html"));
+});
+
 module.exports = router;
 
