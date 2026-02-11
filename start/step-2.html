@@ -964,15 +964,15 @@ No thanks, I’m ok not turning this into income yet
     </main>
 </body>
 
-    <!-- Footer: Copyright and Terms Link -->
-    <footer class="bg-off-white pt-10 pb-10 border-t border-charcoal/5 text-center">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <div class="mb-4 text-center">
-                <button onclick="showView('terms')" style="font-size:12px" uppercase tracking-widest font-bold opacity-60 hover:text-burgundy transition-colors text-center">Terms & Conditions</button>
-            </div>
-            <p class="text-[9px] uppercase tracking-widest opacity-40 text-center">Copyright 2025 - "Dina Shakir Coaching" - All Rights Reserved</p>
-        </div>
-    </footer>
+  <div id="footer-placeholder"></div>
+
+<script>
+fetch("/footer")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("footer-placeholder").innerHTML = data;
+  });
+</script>
 
     <script>
         /**
@@ -1109,6 +1109,16 @@ upsellCheckbox.addEventListener("change", () => {
 }
         });
     </script>
+    <div id="footer-placeholder"></div>
+
+<script>
+fetch("/footer")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("footer-placeholder").innerHTML = data;
+  });
+</script>
+
 </body>
 
 </html>

@@ -263,6 +263,16 @@ BY USING OUR WEBSITES OR PURCHASING OUR PRODUCTS, YOU CONSENT TO THE PRACTICES D
 
   </main>
 
+  <div id="footer-placeholder"></div>
+
+<script>
+fetch("/footer")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("footer-placeholder").innerHTML = data;
+  });
+</script>
+
 </body>
 </html>
 

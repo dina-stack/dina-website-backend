@@ -278,6 +278,15 @@ form.addEventListener("submit", async (e) => {
   }
 });
 </script>
+<div id="footer-placeholder"></div>
+
+<script>
+fetch("/footer")
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById("footer-placeholder").innerHTML = data;
+  });
+</script>
 
 </body>
 </html>
