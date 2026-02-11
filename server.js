@@ -16,6 +16,9 @@ app.use("/", pagesRoutes);
 const paymentRoutes = require("./routes/payment.routes");
 app.use("/", paymentRoutes);
 
+const pagesRoutes = require("./routes/pages.routes");
+app.use("/", pagesRoutes);
+
 // error handler
 const errorMiddleware = require("./middlewares/error.middleware");
 app.use(errorMiddleware);

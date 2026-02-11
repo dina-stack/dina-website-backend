@@ -42,9 +42,10 @@ router.get("/privacy_policy", (req, res) => {
   res.sendFile(path.join(root, "privacy_policy.html"));
 });
 
-router.get("/footer.html", (req, res) => {
+router.get("/footer", (req, res) => {
   res.sendFile(path.join(root, "footer.html"));
 });
+
 
 module.exports = router;
 
