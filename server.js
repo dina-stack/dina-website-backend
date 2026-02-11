@@ -17,15 +17,51 @@ app.use("/", paymentRoutes);
 
 
 const path = require("path");
+const express = require("express");
+const router = express.Router();
+const path = require("path");
 
-app.use(express.static(path.join(__dirname, "public")));
+const root = path.join(__dirname, "..");
 
-app.use("/webhook", webhookRoutes);
+// HOME
+router.get("/", (req, res) => {
+  res.sendFile(path.join(root, "index.html"));
+});
+
+// START (lead magnet page)
+router.get("/start", (req, res) => {
+  res.sendFile(path.join(root, "start", "index.html"));
+});
+
+// THANK YOU — lead magnet
+router.get("/thankyou-framework", (req, res) => {
+  res.sendFile(path.join(root, "start", "thank-you.html"));
+});
+
+// STEP 2 (upsell bridge)
+router.get("/step-2", (req, res) => {
+  res.sendFile(path.join(root, "start", "step-2.html"));
+});
+
+// SHOP
+router.get("/shop", (req, res) => {
+  res.sendFile(path.join(root, "shop", "index.html"));
+});
+
+// WORK WITH ME
+router.get("/work-with-me", (req, res) => {
+  res.sendFile(path.join(root, "work-with-me", "index.html"));
+});
+
+module.exports = router;
+
 
 const errorMiddleware = require("./middlewares/error.middleware");
 app.use(errorMiddleware);
 
-app.listen(3000, () => {
-  console.log("Server running on port 3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
