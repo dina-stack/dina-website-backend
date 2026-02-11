@@ -55,6 +55,7 @@ exports.handleStripeWebhook = async (req, res) => {
     console.error("Product not found");
     return res.status(400).send("Invalid product");
   }
+const upsell = paymentIntent.metadata.upsell === "yes";
 
   // ✅ التحقق من المبلغ
   if (paymentIntent.amount_received !== product.price) {

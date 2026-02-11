@@ -45,13 +45,18 @@ const addUpsell = req.body.addUpsell ?? false;
       amount += products.workbookUpsell.price;
     }
 
-   const paymentIntent = await stripe.paymentIntents.create({
+const paymentIntent = await stripe.paymentIntents.create({
   amount: amount,
   currency: product.currency,
   automatic_payment_methods: {
     enabled: true,
   },
+  metadata: {
+    productId: productId,
+    upsell: addUpsell ? "yes" : "no",
+  },
 });
+
 
 res.json({
   success: true,

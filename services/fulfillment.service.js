@@ -9,6 +9,7 @@ exports.fulfillOrder = async (paymentIntent) => {
     console.error("Product not found during fulfillment");
     return;
   }
+const upsell = paymentIntent.metadata.upsell === "yes";
 
   console.log("🚚 Fulfilling:", product.deliverable);
 
