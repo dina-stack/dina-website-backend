@@ -1102,12 +1102,11 @@ upsellCheckbox.addEventListener("change", () => {
     const response = await fetch("/pay", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            paymentMethodId: paymentMethod.id,
-            name: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            addWorkbook: document.getElementById("upsell-checkbox")?.checked || false
-        }),
+      body: JSON.stringify({
+  productId: "freedomOfferFormula",
+  paymentMethodId: paymentMethod.id,
+  addUpsell: document.getElementById("upsell-checkbox")?.checked || false
+}),
     });
 
     const result = await response.json();

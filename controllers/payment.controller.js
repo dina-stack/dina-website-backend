@@ -16,7 +16,7 @@ if (!req.body || !req.body.productId) {
 }
 
     const productId = req.body.productId.trim();
-const addUpsell = req.body.addUpsell ?? false;
+const addUpsell = req.body.addWorkbook ?? false;
 
     const product = products[productId];
 
@@ -48,6 +48,8 @@ const addUpsell = req.body.addUpsell ?? false;
 const paymentIntent = await stripe.paymentIntents.create({
   amount: amount,
   currency: product.currency,
+  payment_method: req.body.paymentMethodId,
+  confirm: true,
   automatic_payment_methods: {
     enabled: true,
   },
@@ -67,13 +69,6 @@ res.json({
     upsell: addUpsell ? "yes" : "no",
   },
 });
-
-
-
-    return res.json({
-      clientSecret: paymentIntent.client_secret
-    });
-
   } catch (error) {
 
     console.error("Payment Error:", error);

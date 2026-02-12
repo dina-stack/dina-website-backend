@@ -15,11 +15,10 @@ exports.handleStripeWebhook = async (req, res) => {
     const sig = req.headers["stripe-signature"];
 
     event = stripe.webhooks.constructEvent(
-      req.body,
-      sig,
-      process.env.STRIPE_WEBHOOK_SECRET
-    );
-
+  req.rawBody,
+  sig,
+  process.env.STRIPE_WEBHOOK_SECRET
+);
   } catch (err) {
 
     console.error("Invalid webhook signature");
@@ -57,16 +56,23 @@ exports.handleStripeWebhook = async (req, res) => {
   }
 const upsell = paymentIntent.metadata.upsell === "yes";
 
-  // ✅ التحقق من المبلغ
-  if (paymentIntent.amount_received !== product.price) {
+  // let expectedAmount = product.price;
 
-    console.error("Amount mismatch — possible tampering");
+let expectedAmount = product.price;
 
-    return res.status(400).send("Invalid payment amount");
-  }
+if (upsell && productId === "freedomOfferFormula") {
+  expectedAmount += products.workbookUpsell.price;
+}
+
+if (paymentIntent.amount_received !== expectedAmount) {
+  console.error("Amount mismatch — possible tampering");
+  return res.status(400).send("Invalid payment amount");
+}
+
+
 
   // ✅ لا ننتظر fulfillment حتى لا يتأخر الرد على Stripe
-  fulfillOrder(paymentIntent);
+  await fulfillOrder(paymentIntent);
 
   return res.status(200).send("Success");
 };
