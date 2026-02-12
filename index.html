@@ -15,7 +15,7 @@
       --brand-beige:#F6F1EA;
       --text-main:#000000;
       --text-muted:rgba(0,0,0,0.62);
-      --card:#FFFFFF;
+      --card:#FCFAF7;
       --border:rgba(0,0,0,0.10);
       --serif:"Playfair Display", serif;
       --sans:Inter, sans-serif;
@@ -85,35 +85,30 @@
     }
 
     /* HERO */
-    .hero{
-      position:relative;
-      min-height:90vh;
-      display:flex;
-      align-items:center;
-      overflow:hidden;
+   .hero{
+  position:relative;
+  min-height:90vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  background-color:var(--brand-beige);
 
-      background-image:
-        linear-gradient(
-          90deg,
-          rgba(246,241,234,0.98) 0%,
-          rgba(246,241,234,0.98) 40%,
-          rgba(246,241,234,0.70) 52%,
-          rgba(246,241,234,0.30) 60%,
-          rgba(246,241,234,0.00) 66%
-        ),
-        linear-gradient(
-          0deg,
-          rgba(246,241,234,0.25),
-          rgba(246,241,234,0.25)
-        ),
-        url("https://i.ibb.co/4RS7RnH3/IMG-9563.jpg");
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(246,241,234,1) 0%,
+      rgba(246,241,234,1) 48%,
+      rgba(246,241,234,0.75) 60%,
+      rgba(246,241,234,0.35) 70%,
+      rgba(246,241,234,0) 78%
+    ),
+    url("https://i.ibb.co/4RS7RnH3/IMG-9563.jpg");
 
-      background-size:cover;
-      background-repeat:no-repeat;
-      background-position:right -180px top 18%;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position:right center;
+}
 
-
-    }
 
     .hero::after{
       content:"";
@@ -540,8 +535,6 @@
 }
 </style>
 
-<head>
-
 <style>
 
 :root{
@@ -587,13 +580,9 @@ body{
   font-family:var(--serif);
   font-size:clamp(2.2rem,4vw,2.8rem);
   color:var(--brand-red);
-  margin-bottom:20px;
+  margin-bottom:48px;
 }
 
-.shop-subheadline{
-  color:var(--text-muted);
-  font-size:1.1rem;
-}
 
 /* GRID */
 
@@ -617,9 +606,10 @@ body{
 }
 
 .shop-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 18px 40px rgba(0,0,0,0.08);
+  transform:translateY(-2px);
+  box-shadow:0 10px 26px rgba(0,0,0,0.05);
 }
+
 
 /* IMAGE */
 
@@ -672,16 +662,19 @@ body{
 .shop-btn{
   display:inline-block;
   background:var(--brand-red);
-  color:#FFF;
-  padding:20px 48px;
-  border-radius:8px;
+  color:#FCFAF7;
+  padding:20px 46px;
+  border-radius:9px;
   text-decoration:none;
-  box-shadow:0 14px 30px rgba(0,0,0,0.12);
+  box-shadow:0 10px 26px rgba(0,0,0,0.06);
+  transition:all .2s ease;
 }
 
 .shop-btn:hover{
-  transform:translateY(-2px);
+  transform:translateY(-1px);
+  box-shadow:0 14px 30px rgba(0,0,0,0.08);
 }
+
 
 
 /* MOBILE */
@@ -709,13 +702,13 @@ body{
 
 <div class="shop-container">
 
-<header class="shop-header">
+<section class="shop-section">
+
+<div class="shop-container">
+
 <h2 class="shop-headline">Build Your Freedom Business</h2>
 
-<p class="shop-subheadline">
-Practical tools and deeper support to help you turn clarity into income.
-</p>
-</header>
+<div class="shop-grid">
 
 
 <div class="shop-grid">
@@ -758,6 +751,9 @@ Build the simple systems that generate leads, nurture trust, and convert clients
 </div>
 
 </article>
+<div class="shop-actions">
+  <a href="/shop" class="shop-btn">Explore All Options</a>
+</div>
 
 </div>
 </div>
