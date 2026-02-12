@@ -539,7 +539,263 @@
   }
 }
 </style>
+<section id="shop" class="shop-section">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Shop | Dina Shakir</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --brand-red:#6B1E2B;
+  --brand-beige:#F6F1EA;
+  --text-black:#000;
+  --text-muted:rgba(0,0,0,0.62);
+  --border:rgba(0,0,0,0.10);
+  --white:#FFF;
+  --serif:"Playfair Display", serif;
+  --sans:Inter, sans-serif;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:var(--sans);
+  background:var(--brand-beige);
+}
+
+
+/* MINI HEADER */
+
+.shop-mini-header{
+  padding:28px 24px;
+  background:var(--brand-beige);
+  border-bottom:1px solid var(--border);
+}
+
+.shop-mini-header img{
+  height:40px;
+}
+
+
+/* SHOP SECTION */
+
+.shop-section{
+  padding:100px 24px;
+}
+
+.shop-container{
+  max-width:1100px;
+  margin:auto;
+  text-align:center;
+}
+
+.shop-header{
+  margin-bottom:64px;
+}
+
+.shop-headline{
+  font-family:var(--serif);
+  font-size:clamp(2.2rem,4vw,2.8rem);
+  color:var(--brand-red);
+  margin-bottom:20px;
+}
+
+.shop-subheadline{
+  color:var(--text-muted);
+  font-size:1.1rem;
+}
+
+/* GRID */
+
+.shop-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+}
+
+/* CARD */
+
+.shop-card{
+  background:#FFF;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:48px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:.25s;
+}
+
+.shop-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 18px 40px rgba(0,0,0,0.08);
+}
+
+/* IMAGE */
+
+.product-image{
+  width:100%;
+  margin-bottom:36px;
+
+  /* المهم */
+  background:transparent;
+  box-shadow:none;
+  border-radius:0;
+
+  display:block;
+}
+
+
+.product-title{
+  font-family:var(--serif);
+  font-size:1.8rem;
+  color:var(--brand-red);
+  margin-bottom:16px;
+}
+
+.product-description{
+  color:var(--text-muted);
+  line-height:1.7;
+}
+
+.shop-card-footer{
+  margin-top:40px;
+  padding-top:24px;
+  border-top:1px solid var(--border);
+}
+
+.product-link{
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:var(--brand-red);
+  text-decoration:none;
+}
+
+/* BUTTON */
+
+.shop-actions{
+  margin-top:64px;
+}
+
+.shop-btn{
+  display:inline-block;
+  background:var(--brand-red);
+  color:#FFF;
+  padding:20px 48px;
+  border-radius:8px;
+  text-decoration:none;
+  box-shadow:0 14px 30px rgba(0,0,0,0.12);
+}
+
+.shop-btn:hover{
+  transform:translateY(-2px);
+}
+
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.shop-grid{
+  grid-template-columns:1fr;
+}
+
+.shop-card{
+  padding:32px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGO -->
+<header class="shop-mini-header">
+<a href="/">
+<img src="https://i.ibb.co/Wvt1yxhF/13-png.png" alt="Dina Shakir logo">
+</a>
+</header>
+
+
+<!-- SHOP -->
+<section class="shop-section">
+
+<div class="shop-container">
+
+<header class="shop-header">
+<h2 class="shop-headline">Build Your Freedom Business</h2>
+
+<p class="shop-subheadline">
+Practical tools and deeper support to help you turn clarity into income.
+</p>
+</header>
+
+
+<div class="shop-grid">
+
+<!-- CARD 1 -->
+<article class="shop-card">
+
+<div>
+<img src="https://i.ibb.co/xSNX6xnJ/Freedom-Offer-Formula-5.png" class="product-image">
+
+<h3 class="product-title">Freedom Offer Formula™</h3>
+
+<p class="product-description">
+Turn your skills and lived experience into a clear, premium offer people are ready to buy. This is where you stop overthinking and finally package what you already know into something sellable.
+</p>
+</div>
+
+<div class="shop-card-footer">
+<a href="/freedom-offer" class="product-link">View Details</a>
+</div>
+
+</article>
+
+
+<!-- CARD 2 -->
+<article class="shop-card">
+
+<div>
+<img src="https://i.ibb.co/PvGhLTq2/Freedom-Engine.png" class="product-image">
+
+<h3 class="product-title">Freedom Engine™</h3>
+
+<p class="product-description">
+Build the simple systems that generate leads, nurture trust, and convert clients without constant hustle. This is where your business shifts from effort-based to structure-based.
+</p>
+</div>
+
+<div class="shop-card-footer">
+<a href="/freedom-engine" class="product-link">View Details</a>
+</div>
+
+</article>
+
+</div>
+
+
+<div class="shop-actions">
+<a href="/shop" class="shop-btn">Explore all options</a>
+</div>
+
+</div>
+</section>
   <!-- Placeholder anchors for nav (we'll build these sections next) -->
 
   <div id="success-stories"></div>

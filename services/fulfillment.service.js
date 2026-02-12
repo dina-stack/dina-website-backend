@@ -11,6 +11,6 @@ exports.fulfillOrder = async (paymentIntent) => {
   }
 const upsell = paymentIntent.metadata.upsell === "yes";
 
-  console.log("🚚 Fulfilling:", product.deliverable);
+  console.log("🚚 Fulfilling:", product.deliverable, upsell ? "with upsell" : "without upsell");
 
 };
