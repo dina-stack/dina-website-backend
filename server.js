@@ -2,9 +2,18 @@ require("dotenv").config();
 
 const express = require("express");
 const app = express();
+const path = require("path");
 
+app.use(express.static(path.join(__dirname)));
 
-// routes
+/* ---------- MIDDLEWARE FIRST ---------- */
+app.use(express.json({
+  verify:(req,res,buf)=>{
+    req.rawBody = buf;
+  }
+}));
+
+/* ---------- ROUTES ---------- */
 const webhookRoutes = require("./routes/webhook.routes");
 app.use("/webhook", webhookRoutes);
 
@@ -17,21 +26,13 @@ app.use("/", paymentRoutes);
 const leadRoutes = require("./routes/lead.routes");
 app.use("/", leadRoutes);
 
-// error handler
+/* ---------- ERROR HANDLER LAST ---------- */
 const errorMiddleware = require("./middlewares/error.middleware");
 app.use(errorMiddleware);
 
-// start server
+/* ---------- START SERVER ---------- */
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-// middleware
-app.use(express.json({
-  verify: (req, res, buf) => {
-    req.rawBody = buf;
-  }
-}));
-
