@@ -44,13 +44,14 @@ router.get("/privacy_policy", (req, res) => {
 
 // Freedom Offer Formula
 router.get("/fof", (req, res) => {
-  res.sendFile(path.join(root, "shop", "FoF.html"));
+  res.sendFile(path.join(root, "shop", "FoF.html", "index.html"));
 });
 
 // Freedom Engine
 router.get("/freedom-engine", (req, res) => {
-  res.sendFile(path.join(root, "shop", "freedom-engine.html"));
+  res.sendFile(path.join(root, "shop", "freedom-engine", "index.html"));
 });
+
 
 
 router.get("/footer", (req, res) => {

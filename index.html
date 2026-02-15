@@ -694,9 +694,6 @@ body{
 }
 
 </style>
-</head>
-
-<body>
 
 
 <!-- SHOP -->
@@ -723,7 +720,7 @@ body{
         </div>
 
         <div class="shop-card-footer">
-          <a href="/shop/FoF.html/index.html" class="product-link">View Details</a>
+          <a href="/fof" class="product-link">View Details</a>
         </div>
       </article>
 
@@ -741,7 +738,7 @@ body{
         </div>
 
         <div class="shop-card-footer">
-          <a href="/shop/freedom-engine/index.html" class="product-link">View Details</a>
+          <a href="/freedom-engine" class="product-link">View Details</a>
         </div>
       </article>
 
@@ -919,6 +916,7 @@ let isAnimating = false;
 
 const slides = document.querySelectorAll(".ss-slide");
 const totalSlides = slides.length;
+index = 1;
 
 track.style.display = "flex";
 track.style.transition = "transform 0.6s ease";
@@ -988,23 +986,21 @@ window.scrollCarousel = function(direction){
   }
 
   .ss-section-title {
-    font-family: var(--serif);
-    font-size: 1.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--brand-red);
-    margin-bottom: 24px;
-  }
+    font-family:var(--serif);
+  font-size:clamp(1.2rem,1.6vw,1.4rem);
+  letter-spacing:0.32em;
+  text-transform:uppercase;
+  color:var(--brand-red);
+  margin-bottom:26px;
+}
 
   .ss-subheader {
-    font-family: var(--serif);
-    /* Reduced by 3pt (~4px) from previous version */
-    font-size: clamp(1.75rem, 3.1vw, 2.5rem);
-    color: var(--text-main);
-    line-height: 1.18;
-    font-weight: 600;
-  }
+    font-family:var(--serif);
+  font-size:clamp(2.2rem,3.6vw,3rem);
+  line-height:1.16;
+  color:var(--text-main);
+  font-weight:600;
+}
 
   /* CAROUSEL WRAPPER */
   .ss-carousel-outer {
