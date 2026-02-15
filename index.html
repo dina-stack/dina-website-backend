@@ -85,7 +85,7 @@
     }
 
     /* HERO */
-   .hero{
+ .hero{
   position:relative;
   min-height:90vh;
   display:flex;
@@ -97,16 +97,16 @@
     linear-gradient(
       90deg,
       rgba(246,241,234,1) 0%,
-      rgba(246,241,234,1) 48%,
-      rgba(246,241,234,0.75) 60%,
-      rgba(246,241,234,0.35) 70%,
-      rgba(246,241,234,0) 78%
+      rgba(246,241,234,1) 42%,
+      rgba(246,241,234,0.75) 54%,
+      rgba(246,241,234,0.35) 64%,
+      rgba(246,241,234,0) 74%
     ),
     url("https://i.ibb.co/4RS7RnH3/IMG-9563.jpg");
 
   background-size:cover;
   background-repeat:no-repeat;
-  background-position:right center;
+  background-position:right -120px center;
 }
 
 
@@ -595,7 +595,8 @@ body{
 /* CARD */
 
 .shop-card{
-  background:#FFF;
+  background:var(--card);
+
   border:1px solid var(--border);
   border-radius:14px;
   padding:48px;
@@ -700,64 +701,62 @@ body{
 <!-- SHOP -->
 <section class="shop-section">
 
-<div class="shop-container">
+  <div class="shop-container">
 
-<section class="shop-section">
+    <h2 class="shop-headline">
+      Build Your Freedom Business
+    </h2>
 
-<div class="shop-container">
+    <div class="shop-grid">
 
-<h2 class="shop-headline">Build Your Freedom Business</h2>
+      <!-- CARD 1 -->
+      <article class="shop-card">
+        <div>
+          <img src="https://i.ibb.co/xSNX6xnJ/Freedom-Offer-Formula-5.png" class="product-image">
 
-<div class="shop-grid">
+          <h3 class="product-title">Freedom Offer Formula™</h3>
 
+          <p class="product-description">
+            Turn your skills and lived experience into a clear, premium offer people are ready to buy. This is where you stop overthinking and finally package what you already know into something sellable.
+          </p>
+        </div>
 
-<div class="shop-grid">
-
-<!-- CARD 1 -->
-<article class="shop-card">
-
-<div>
-<img src="https://i.ibb.co/xSNX6xnJ/Freedom-Offer-Formula-5.png" class="product-image">
-
-<h3 class="product-title">Freedom Offer Formula™</h3>
-
-<p class="product-description">
-Turn your skills and lived experience into a clear, premium offer people are ready to buy. This is where you stop overthinking and finally package what you already know into something sellable.
-</p>
-</div>
-
-<div class="shop-card-footer">
-<a href="/shop/FoF.html" class="product-link">View Details</a>
-</div>
-
-</article>
+        <div class="shop-card-footer">
+          <a href="/shop/FoF.html" class="product-link">View Details</a>
+        </div>
+      </article>
 
 
-<!-- CARD 2 -->
-<article class="shop-card">
+      <!-- CARD 2 -->
+      <article class="shop-card">
+        <div>
+          <img src="https://i.ibb.co/PvGhLTq2/Freedom-Engine.png" class="product-image">
 
-<div>
-<img src="https://i.ibb.co/PvGhLTq2/Freedom-Engine.png" class="product-image">
+          <h3 class="product-title">Freedom Engine™</h3>
 
-<h3 class="product-title">Freedom Engine™</h3>
+          <p class="product-description">
+            Build the simple systems that generate leads, nurture trust, and convert clients without constant hustle. This is where your business shifts from effort-based to structure-based.
+          </p>
+        </div>
 
-<p class="product-description">
-Build the simple systems that generate leads, nurture trust, and convert clients without constant hustle. This is where your business shifts from effort-based to structure-based.
-</p>
-</div>
+        <div class="shop-card-footer">
+          <a href="/freedom-engine" class="product-link">View Details</a>
+        </div>
+      </article>
 
-<div class="shop-card-footer">
-<a href="/freedom-engine" class="product-link">View Details</a>
-</div>
+    </div>
 
-</article>
-<div class="shop-actions">
-  <a href="/shop" class="shop-btn">Explore All Options</a>
-</div>
+    <div class="shop-actions">
+      <a href="/shop" class="shop-btn">
+        Explore All Options
+      </a>
+    </div>
 
-</div>
-</div>
+  </div>
+
 </section>
+
+
 
 <!-- SUCCESS STORIES SECTION -->
 <section id="success-stories" class="success-stories">
@@ -963,7 +962,7 @@ function scrollCarousel(direction) {
 
   .success-stories {
     background: var(--brand-beige);
-    padding: 72px 24px;
+     padding: 110px 24px;
     font-family: var(--sans);
     border-top: 1px solid var(--border);
     overflow-x: hidden;
