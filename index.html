@@ -96,21 +96,29 @@
   align-items:center;
   overflow:hidden;
 
+  /* يخلي الهيرو يطلع full width بدون ما يغيّر الصورة */
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+
   background-image:
     linear-gradient(
       90deg,
-      #F6F1EA 0%,
-      #F6F1EA 38%,
-      rgba(246,241,234,0.75) 50%,
-      rgba(246,241,234,0.35) 60%,
-      rgba(246,241,234,0.05) 68%,
-      rgba(246,241,234,0) 74%
+      rgba(246,241,234,0.98) 0%,
+      rgba(246,241,234,0.98) 40%,
+      rgba(246,241,234,0.70) 52%,
+      rgba(246,241,234,0.30) 60%,
+      rgba(246,241,234,0.00) 66%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(246,241,234,0.25),
+      rgba(246,241,234,0.25)
     ),
     url("https://i.ibb.co/4RS7RnH3/IMG-9563.jpg");
 
   background-size:cover;
   background-repeat:no-repeat;
-  background-position:right -140px center;
+  background-position:right -180px top 18%;
 }
 
 
@@ -275,6 +283,22 @@
         grid-template-columns:1fr;
       }
     }
+
+    html,body{
+  margin:0;
+  padding:0;
+  background:#F6F1EA;
+}
+
+.hero{
+  width:100%;
+  margin:0;
+}
+
+header{
+  margin:0;
+}
+
   </style>
 </head>
 
