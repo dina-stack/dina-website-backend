@@ -15,9 +15,10 @@ router.get("/start", (req, res) => {
 });
 
 // THANK YOU — lead magnet
-router.get("/thankyou-framework", (req, res) => {
+router.get("/start/thank-you", (req, res) => {
   res.sendFile(path.join(root, "start", "thank-you.html"));
 });
+
 
 // STEP 2 (upsell bridge)
 router.get("/step-2", (req, res) => {
