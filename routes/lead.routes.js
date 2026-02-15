@@ -1,23 +1,44 @@
 const express = require("express");
 const router = express.Router();
+const axios = require("axios");
 
-router.post("/framework-lead", async (req, res) => {
+router.post("/framework-lead", async (req,res)=>{
+  try{
 
-  const { name, email } = req.body;
+    const {email,name} = req.body;
 
-  if (!email) {
-    return res.status(400).json({
-      message: "Email is required"
-    });
+    const contact = await axios.post(
+      "https://dinashakir.api-us1.com/api/3/contact/sync",
+      { contact:{ email, firstName:name }},
+      { headers:{
+        "Api-Token":process.env.ACTIVE_CAMPAIGN_TOKEN,
+        "Content-Type":"application/json"
+      }}
+    );
+
+    const contactId = contact.data.contact.id;
+
+    await axios.post(
+      "https://dinashakir.api-us1.com/api/3/contactLists",
+      {
+        contactList:{
+          list:16,
+          contact:contactId,
+          status:1
+        }
+      },
+      { headers:{
+        "Api-Token":process.env.ACTIVE_CAMPAIGN_TOKEN,
+        "Content-Type":"application/json"
+      }}
+    );
+
+    res.json({success:true});
+
+  }catch(err){
+    console.error("Framework lead error:", err.response?.data || err.message);
+    res.json({success:false});
   }
-
-  // مؤقت — فقط لنتأكد أنه يعمل
-  console.log("NEW LEAD:", name, email);
-
-  return res.json({
-    success: true
-  });
-
 });
 
 module.exports = router;
