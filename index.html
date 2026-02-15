@@ -106,16 +106,21 @@
       rgba(246,241,234,0.05) 68%,
       rgba(246,241,234,0) 74%
     ),
+    linear-gradient(
+      0deg,
+      rgba(246,241,234,0.25),
+      rgba(246,241,234,0.25)
+    ),
     url("https://i.ibb.co/4RS7RnH3/IMG-9563.jpg");
 
   background-size:cover;
   background-repeat:no-repeat;
-  background-position:right -140px center;
+
+  /* أهم سطر لتموضع الصورة */
+  background-position:right -180px top 18%;
 }
 
-
-
-    .hero::after{
+.hero::after{
   content:"";
   position:absolute;
   inset:0;
@@ -129,24 +134,14 @@
   opacity:0.45;
 }
 
-    .hero-content{
-      position:relative;
-      z-index:2;
-      width:min(720px, 92vw);
-      margin-left: clamp(24px, 6vw, 120px);
-      padding:56px 0 44px;
-    }
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:min(720px, 92vw);
+  margin-left: clamp(24px, 6vw, 120px);
+  padding:56px 0 44px;
+}
 
-    .hero h1{
-      font-family:var(--serif);
-      font-size:clamp(2.6rem, 5vw, 4.2rem);
-      line-height:1.03;
-      letter-spacing:-0.02em;
-      color:var(--text-main);
-      margin-bottom:36px;
-
-
-    }
 .subcopy strong{
   color:#000;
 }
@@ -309,30 +304,32 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero" id="top">
-    <div class="hero-content">
-      <h1>
-        Build a business that<br>
-        pays you to be <strong><em>yourself</em></strong>
-      </h1>
+ <section class="hero" id="top">
+  <div class="hero-content">
 
-      <div class="subcopy">
-        <span class="tight">
-          Turn your <strong><em>natural talents</em></strong> into a premium offer people beg to buy<br>
-          and build a freedom-based business that <strong><em>fits your life</em></strong><br>
-          (not the other way around)
-        </span>
+    <h1>
+      Build a business that<br>
+      pays you to be <strong><em>yourself</em></strong>
+    </h1>
 
-        You’re not here to build like everyone else.<br><br>
-        <strong>You’re here to build something that actually feels like <em>you</em>.</strong>
-      </div>
+    <div class="subcopy">
+      <span class="tight">
+        Turn your <strong><em>natural talents</em></strong> into a premium offer people beg to buy<br>
+        and build a freedom-based business that <strong><em>fits your life</em></strong><br>
+        (not the other way around)
+      </span>
 
-      <a class="btn" href="/start">
-  Download My Free Clarity Framework
-</a>
-
+      You’re not here to build like everyone else.<br><br>
+      <strong>You’re here to build something that actually feels like <em>you</em>.</strong>
     </div>
-  </section>
+
+    <a class="btn" href="/start">
+      Download My Free Clarity Framework
+    </a>
+
+  </div>
+</section>
+
 
   <!-- OVERVIEW -->
   <section id="overview">

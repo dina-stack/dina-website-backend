@@ -27,12 +27,13 @@ body{
   margin:0;
   font-family:Inter, sans-serif;
   background:var(--beige);
-  display:flex;
-  align-items:center;
-  justify-content:center;
   min-height:100vh;
   color:var(--text);
+
+  display:flex;
+  flex-direction:column;
 }
+
 
 .card{
 
@@ -94,13 +95,20 @@ h1{
   background:rgba(107,29,40,.06);
   font-size:14px;
   color:var(--muted);
+  .page-center{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 0;
+}
 }
 
 </style>
 </head>
 
 <body>
-
+<div class="page-center">
 <div class="card">
 
 <img class="logo"
@@ -158,6 +166,8 @@ Your guide is ready. Click below to download it instantly.
 </a>
 
 </div>
+</div>
+
 
 <div id="footer-placeholder"></div>
 
