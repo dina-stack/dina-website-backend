@@ -981,25 +981,23 @@ body{
 
 <script>
 const track = document.getElementById("carouselTrack");
-let index = 0;
 
 function scrollCarousel(dir){
-  const slides = track.children.length;
-  index += dir;
-
-  if(index < 0) index = slides - 1;
-  if(index >= slides) index = 0;
-
-  track.style.transform = `translateX(-${index * 100}%)`;
-}</script>
+  const cardWidth = 352; // 320 + gap تقريبا
+  track.scrollBy({
+    left: dir * cardWidth,
+    behavior: "smooth"
+  });
+}
+</script>
 
 
 
 <style>
  .success-stories{
   background:#F6F1EA;
-  padding:120px 24px 100px;
-  scroll-margin-top:140px;
+  padding:140px 24px 100px;
+  scroll-margin-top:160px;
 }
 
 .ss-container{
@@ -1046,17 +1044,16 @@ function scrollCarousel(dir){
 }
 
 .ss-grid{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  display:flex;
   gap:32px;
-  width:100%;
 }
 
 .ss-card{
   background:#FCFAF7;
   border:1px solid rgba(0,0,0,0.08);
   padding:40px;
-  width:100%;
+  width:320px;
+  flex:0 0 auto;
 }
 
 .ss-client-header{
