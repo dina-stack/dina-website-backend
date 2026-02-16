@@ -50,8 +50,9 @@ router.get("/privacy_policy", (req, res) => {
 
 // Freedom Offer Formula  (بدون تغيير اسم فولدر FoF.html)
 router.get("/fof", (req, res) => {
-  res.sendFile(path.join(root, "shop", "FoF.html"));
+  res.sendFile(path.join(root, "shop", "FoF.html", "index.html"));
 });
+
 
 // Freedom Engine
 router.get("/freedom-engine", (req, res) => {
