@@ -980,19 +980,90 @@ body{
 
 
 <script>
-const outer = document.querySelector(".ss-carousel-outer");
+const track = document.getElementById('carouselTrack');
+let isMoving = false;
 
-function scrollCarousel(dir){
-  const card = document.querySelector(".ss-card");
-  const style = getComputedStyle(card);
-  const gap = 32;
-  const width = card.offsetWidth + gap;
-
-  outer.scrollBy({
-    left: dir * width,
-    behavior: "smooth"
-  });
+function getSlideWidth(){
+  return track.parentElement.offsetWidth; // عرض الكاروسيل الحقيقي
 }
+
+function jumpTo(position){
+  track.style.scrollSnapType = 'none';
+  track.scrollLeft = position;
+  track.offsetHeight; // force reflow
+  track.style.scrollSnapType = 'x mandatory';
+}
+
+window.addEventListener('load', ()=>{
+  const w = getSlideWidth();
+  jumpTo(w); // نبدأ على أول سلايد حقيقي
+});
+
+window.addEventListener('resize', ()=>{
+  const w = getSlideWidth();
+  jumpTo(w);
+});
+
+function scrollCarousel(direction){
+
+  if(isMoving) return;
+  isMoving = true;
+
+  const w = getSlideWidth();
+  const current = Math.round(track.scrollLeft / w);
+  const target = (current + direction) * w;
+
+  track.style.scrollSnapType = 'none';
+
+  track.scrollTo({
+    left: target,
+    behavior: 'smooth'
+  });
+
+  setTimeout(()=>{
+
+    const max = track.scrollWidth - w;
+
+    if(track.scrollLeft >= max - 2){
+      jumpTo(w);
+    }
+    else if(track.scrollLeft <= 2){
+      jumpTo(max - w);
+    }
+    else{
+      track.style.scrollSnapType = 'x mandatory';
+    }
+
+    isMoving = false;
+
+  },550);
+}
+
+/* LOOP بعد السحب اليدوي */
+
+let scrollTimer;
+
+track.addEventListener('scroll',()=>{
+
+  if(isMoving) return;
+
+  clearTimeout(scrollTimer);
+
+  scrollTimer=setTimeout(()=>{
+
+    const w = getSlideWidth();
+    const max = track.scrollWidth - w;
+
+    if(track.scrollLeft >= max - 2){
+      jumpTo(w);
+    }
+    else if(track.scrollLeft <= 2){
+      jumpTo(max - w);
+    }
+
+  },120);
+
+});
 
 </script>
 
@@ -1043,6 +1114,14 @@ function scrollCarousel(dir){
   display:flex;
   gap:32px;
   width:max-content;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0;
+}
+
+.ss-slide{
+  flex:0 0 100%;
+  width:100%;
 }
 
 .ss-grid{
