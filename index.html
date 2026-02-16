@@ -1015,8 +1015,8 @@ outerCarousel.addEventListener("mousemove", (e)=>{
 <style>
  .success-stories{
   background:#F6F1EA;
-  padding:100px 24px;
-  scroll-margin-top:120px;
+  padding:120px 24px 100px;
+  scroll-margin-top:140px;
 }
 
 .ss-container{
@@ -1032,30 +1032,35 @@ outerCarousel.addEventListener("mousemove", (e)=>{
 
 .ss-section-title{
   font-family:"Playfair Display",serif;
-  font-size:clamp(2rem,3vw,2.6rem);
+  font-size:clamp(2.2rem,4vw,2.8rem);
   color:#6B1E2B;
-  margin-bottom:20px;
+  margin-bottom:16px;
+  text-align:center;
 }
 
 .ss-subheader{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(1.6rem,3vw,2.3rem);
+  font-family:Inter,sans-serif;
+  font-size:1.05rem;
+  max-width:720px;
+  margin:0 auto;
+  color:rgba(0,0,0,0.6);
+  text-align:center;
 }
 
 .ss-carousel-outer{position:relative;overflow:hidden;}
 
 .ss-carousel-track{
   display:flex;
-  gap:32px;
-  padding-bottom:10px;
+  transition:transform .6s ease;
 }
 
 .ss-slide{
-  display:flex;
+  min-width:100%;
 }
 
 .ss-grid{
-  display:flex;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
   gap:32px;
 }
 
