@@ -980,15 +980,20 @@ body{
 
 
 <script>
-const track = document.getElementById("carouselTrack");
+const outer = document.querySelector(".ss-carousel-outer");
 
 function scrollCarousel(dir){
-  const cardWidth = 352; // 320 + gap تقريبا
-  track.scrollBy({
-    left: dir * cardWidth,
+  const card = document.querySelector(".ss-card");
+  const style = getComputedStyle(card);
+  const gap = 32;
+  const width = card.offsetWidth + gap;
+
+  outer.scrollBy({
+    left: dir * width,
     behavior: "smooth"
   });
 }
+
 </script>
 
 
@@ -996,8 +1001,8 @@ function scrollCarousel(dir){
 <style>
  .success-stories{
   background:#F6F1EA;
-  padding:140px 24px 100px;
-  scroll-margin-top:160px;
+  padding:120px 24px 100px;
+  scroll-margin-top:120px;
 }
 
 .ss-container{
@@ -1036,11 +1041,8 @@ function scrollCarousel(dir){
 
 .ss-carousel-track{
   display:flex;
-  transition:transform .6s ease;
-}
-
-.ss-slide{
-  min-width:100%;
+  gap:32px;
+  width:max-content;
 }
 
 .ss-grid{
