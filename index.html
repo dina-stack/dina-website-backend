@@ -850,6 +850,71 @@ body{
               </p>
             </article>
 
+             <article class="ss-card">
+              <div class="ss-client-header">
+                <div class="ss-image-wrapper">
+                  <img src="https://via.placeholder.com/150">
+                </div>
+                <div>
+                  <span class="ss-name">Sarah M.</span>
+                  <span class="ss-role">Strategic Consultant</span>
+                </div>
+              </div>
+              <p class="ss-testimonial">
+                "Building from alignment changed everything. My business feels light,
+                my revenue is higher, and the constant mental load of the hustle disappeared."
+              </p>
+            </article>
+
+             <article class="ss-card">
+              <div class="ss-client-header">
+                <div class="ss-image-wrapper">
+                  <img src="https://via.placeholder.com/150">
+                </div>
+                <div>
+                  <span class="ss-name">Sarah M.</span>
+                  <span class="ss-role">Strategic Consultant</span>
+                </div>
+              </div>
+              <p class="ss-testimonial">
+                "Building from alignment changed everything. My business feels light,
+                my revenue is higher, and the constant mental load of the hustle disappeared."
+              </p>
+            </article>
+
+             <article class="ss-card">
+              <div class="ss-client-header">
+                <div class="ss-image-wrapper">
+                  <img src="https://via.placeholder.com/150">
+                </div>
+                <div>
+                  <span class="ss-name">Sarah M.</span>
+                  <span class="ss-role">Strategic Consultant</span>
+                </div>
+              </div>
+              <p class="ss-testimonial">
+                "Building from alignment changed everything. My business feels light,
+                my revenue is higher, and the constant mental load of the hustle disappeared."
+              </p>
+            </article>
+
+             <article class="ss-card">
+              <div class="ss-client-header">
+                <div class="ss-image-wrapper">
+                  <img src="https://via.placeholder.com/150">
+                </div>
+                <div>
+                  <span class="ss-name">Sarah M.</span>
+                  <span class="ss-role">Strategic Consultant</span>
+                </div>
+              </div>
+              <p class="ss-testimonial">
+                "Building from alignment changed everything. My business feels light,
+                my revenue is higher, and the constant mental load of the hustle disappeared."
+              </p>
+            </article>
+
+
           </div>
         </div>
 
@@ -915,18 +980,34 @@ body{
 
 
 <script>
-const track = document.getElementById("carouselTrack");
-let index = 0;
+const outerCarousel = document.querySelector(".ss-carousel-outer");
 
-function scrollCarousel(dir){
-  const slides = track.children.length;
-  index += dir;
+let isDown = false;
+let startX;
+let scrollLeft;
 
-  if(index < 0) index = slides - 1;
-  if(index >= slides) index = 0;
+outerCarousel.addEventListener("mousedown", (e)=>{
+  isDown = true;
+  outerCarousel.classList.add("dragging");
+  startX = e.pageX - outerCarousel.offsetLeft;
+  scrollLeft = outerCarousel.scrollLeft;
+});
 
-  track.style.transform = `translateX(-${index * 100}%)`;
-}
+outerCarousel.addEventListener("mouseleave", ()=>{
+  isDown = false;
+});
+
+outerCarousel.addEventListener("mouseup", ()=>{
+  isDown = false;
+});
+
+outerCarousel.addEventListener("mousemove", (e)=>{
+  if(!isDown) return;
+  e.preventDefault();
+  const x = e.pageX - outerCarousel.offsetLeft;
+  const walk = (x - startX) * 1.6; 
+  outerCarousel.scrollLeft = scrollLeft - walk;
+});
 </script>
 
 
@@ -935,7 +1016,7 @@ function scrollCarousel(dir){
  .success-stories{
   background:#F6F1EA;
   padding:100px 24px;
-  border-top:1px solid rgba(0,0,0,0.08);
+  scroll-margin-top:120px;
 }
 
 .ss-container{
@@ -965,16 +1046,16 @@ function scrollCarousel(dir){
 
 .ss-carousel-track{
   display:flex;
-  transition:transform .6s ease;
+  gap:32px;
+  padding-bottom:10px;
 }
 
 .ss-slide{
-  min-width:100%;
+  display:flex;
 }
 
 .ss-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
+  display:flex;
   gap:32px;
 }
 
@@ -982,6 +1063,9 @@ function scrollCarousel(dir){
   background:#FCFAF7;
   border:1px solid rgba(0,0,0,0.08);
   padding:40px;
+  min-width:320px;
+  max-width:320px;
+  flex:0 0 auto;
 }
 
 .ss-client-header{
@@ -1037,6 +1121,17 @@ function scrollCarousel(dir){
   .ss-grid{grid-template-columns:1fr;}
   .ss-nav-btn{display:none;}
 }
+
+.ss-carousel-outer{
+  cursor:grab;
+  scroll-behavior:smooth;
+  overflow-x:auto;
+}
+
+.ss-carousel-outer.dragging{
+  cursor:grabbing;
+}
+
 </style>
 
   <!-- Placeholder anchors for nav (we'll build these sections next) -->
