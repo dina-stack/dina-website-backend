@@ -980,35 +980,18 @@ body{
 
 
 <script>
-const outerCarousel = document.querySelector(".ss-carousel-outer");
+const track = document.getElementById("carouselTrack");
+let index = 0;
 
-let isDown = false;
-let startX;
-let scrollLeft;
+function scrollCarousel(dir){
+  const slides = track.children.length;
+  index += dir;
 
-outerCarousel.addEventListener("mousedown", (e)=>{
-  isDown = true;
-  outerCarousel.classList.add("dragging");
-  startX = e.pageX - outerCarousel.offsetLeft;
-  scrollLeft = outerCarousel.scrollLeft;
-});
+  if(index < 0) index = slides - 1;
+  if(index >= slides) index = 0;
 
-outerCarousel.addEventListener("mouseleave", ()=>{
-  isDown = false;
-});
-
-outerCarousel.addEventListener("mouseup", ()=>{
-  isDown = false;
-});
-
-outerCarousel.addEventListener("mousemove", (e)=>{
-  if(!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - outerCarousel.offsetLeft;
-  const walk = (x - startX) * 1.6; 
-  outerCarousel.scrollLeft = scrollLeft - walk;
-});
-</script>
+  track.style.transform = `translateX(-${index * 100}%)`;
+}</script>
 
 
 
@@ -1047,7 +1030,11 @@ outerCarousel.addEventListener("mousemove", (e)=>{
   text-align:center;
 }
 
-.ss-carousel-outer{position:relative;overflow:hidden;}
+.ss-carousel-outer{
+  position:relative;
+  overflow:hidden;
+  width:100%;
+}
 
 .ss-carousel-track{
   display:flex;
@@ -1060,17 +1047,16 @@ outerCarousel.addEventListener("mousemove", (e)=>{
 
 .ss-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:32px;
+  width:100%;
 }
 
 .ss-card{
   background:#FCFAF7;
   border:1px solid rgba(0,0,0,0.08);
   padding:40px;
-  min-width:320px;
-  max-width:320px;
-  flex:0 0 auto;
+  width:100%;
 }
 
 .ss-client-header{
@@ -1126,15 +1112,12 @@ outerCarousel.addEventListener("mousemove", (e)=>{
   .ss-grid{grid-template-columns:1fr;}
   .ss-nav-btn{display:none;}
 }
-
-.ss-carousel-outer{
-  cursor:grab;
-  scroll-behavior:smooth;
-  overflow-x:auto;
-}
-
-.ss-carousel-outer.dragging{
-  cursor:grabbing;
+.ss-header{
+  text-align:center;
+  margin-bottom:60px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
 </style>
