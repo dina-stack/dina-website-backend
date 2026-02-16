@@ -4,8 +4,6 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
-app.use(express.static(path.join(__dirname)));
-
 /* ---------- MIDDLEWARE FIRST ---------- */
 app.use(express.json({
   verify:(req,res,buf)=>{
@@ -25,6 +23,9 @@ app.use("/", paymentRoutes);
 
 const leadRoutes = require("./routes/lead.routes");
 app.use("/", leadRoutes);
+
+/* ---------- STATIC FILES (MOVED HERE) ---------- */
+app.use(express.static(path.join(__dirname)));
 
 /* ---------- ERROR HANDLER LAST ---------- */
 const errorMiddleware = require("./middlewares/error.middleware");

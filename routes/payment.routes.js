@@ -9,7 +9,9 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 router.post("/pay", async (req, res) => {
   try {
-    const { paymentMethodId, name, email, addWorkbook } = req.body;
+    const { paymentMethodId, name, email, addUpsell } = req.body;
+const addWorkbook = addUpsell;
+
 
     if (!paymentMethodId || !email) {
       return res.json({ success:false, error:"Missing payment data" });
@@ -18,20 +20,28 @@ router.post("/pay", async (req, res) => {
     /* STRIPE */
     const amount = addWorkbook ? 4700 : 3700;
 
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount,
-      currency: "usd",
-      payment_method: paymentMethodId,
-      confirm: true,
-      automatic_payment_methods:{
-        enabled:true,
-        allow_redirects:"never"
-      },
-      receipt_email: email,
-      description: addWorkbook
-        ? "Freedom Offer Formula + Workbook"
-        : "Freedom Offer Formula"
-    });
+  const paymentIntent = await stripe.paymentIntents.create({
+  amount,
+  currency: "usd",
+  payment_method: paymentMethodId,
+  confirm: true,
+  receipt_email: email,
+
+  automatic_payment_methods:{
+    enabled:true,
+    allow_redirects:"never"
+  },
+  receipt_email: email,
+  description: addWorkbook
+    ? "Freedom Offer Formula + Workbook"
+    : "Freedom Offer Formula",
+
+  metadata:{
+    productId:"freedomOfferFormula",
+    upsell: addWorkbook ? "yes" : "no"
+  }
+});
+
 
     if(paymentIntent.status !== "succeeded"){
       return res.json({ success:false, error:"Payment not completed" });
@@ -82,9 +92,10 @@ router.post("/pay", async (req, res) => {
     }
 
     return res.json({
-      success:true,
-      redirect:addWorkbook ? "/success-upsell" : "/success"
-    });
+  success:true,
+  redirect:addWorkbook ? "/fof/wb-thankyou" : "/fof/wb-thankyou"
+});
+
 
   } catch(err){
     console.error("PAY ERROR:", err);

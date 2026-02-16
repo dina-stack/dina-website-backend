@@ -1,99 +1,70 @@
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dina Shakir Footer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
-    <style>
-        /* Base Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<footer class="lux-footer">
 
-        body {
-            background-color: #fcfcfc;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
+<style>
+.lux-footer {
+    background-color: #4F1420;
+    color: #F5F1EA;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-align: center;
+    padding-top: 90px;
+    padding-bottom: 90px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    width: 100%;
+}
 
-        /* Footer Container */
-        .lux-footer {
-            background-color: #4F1420;
-            color: #F5F1EA;
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            text-align: center;
-            padding-top: 90px;
-            padding-bottom: 90px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            width: 100%;
-        }
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 32px;
+}
 
-        /* Navigation Links */
-        .footer-nav {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 32px;
-        }
+.footer-nav a {
+    color: #F5F1EA;
+    text-decoration: none;
+    opacity: 0.65;
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
 
-        .footer-nav a {
-            color: #F5F1EA;
-            text-decoration: none;
-            /* Lower initial opacity to make the hover pop more */
-            opacity: 0.65;
-            transition: opacity 0.2s ease, color 0.2s ease;
-        }
+.footer-nav a:hover {
+    opacity: 1;
+    color: #FFFFFF;
+}
 
-        /* Enhanced Hover State */
-        .footer-nav a:hover {
-            opacity: 1; 
-            color: #FFFFFF; /* Pure white for maximum contrast on hover */
-        }
+.footer-info {
+    opacity: 0.5;
+    line-height: 1.8;
+}
 
-        /* Branding & Legal */
-        .footer-info {
-            opacity: 0.5;
-            line-height: 1.8;
-        }
+.footer-info span {
+    display: block;
+}
 
-        .footer-info span {
-            display: block;
-        }
+@media (max-width: 600px) {
+    .footer-nav {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    .lux-footer {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+</style>
 
-        /* Responsive Layout */
-        @media (max-width: 600px) {
-            .footer-nav {
-                flex-direction: column;
-                gap: 20px;
-                margin-bottom: 40px;
-            }
-            .lux-footer {
-                padding-top: 60px;
-                padding-bottom: 60px;
-            }
-        }
-    </style>
-</head>
-<body>
+<nav class="footer-nav">
+    <a href="/privacy_policy">Privacy Policy</a>
+    <a href="/terms_conditions">Terms & Conditions</a>
+    <a href="mailto:dina@dinashakir.com">Contact</a>
+</nav>
 
-    <!-- Luxury Footer Component -->
-    <footer class="lux-footer">
-        <nav class="footer-nav">
-            <a href="/privacy_policy">Privacy Policy</a>
-            <a href="/terms_conditions">Terms & Conditions</a>
-            <a href="mailto:dina@dinashakir.com">Contact</a>
-        </nav>
+<div class="footer-info">
+    <span>Dina Shakir Coaching LLC</span>
+    <span>© 2025 All Rights Reserved</span>
+</div>
 
-        <div class="footer-info">
-            <span>Dina Shakir Coaching LLC</span>
-            <span>© 2025 All Rights Reserved</span>
-        </div>
-    </footer>
+</footer>

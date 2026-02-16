@@ -271,7 +271,17 @@ form.addEventListener("submit", async (e) => {
       }),
     });
 
-    window.location.href = "/step-2";
+    if (response.ok) {
+  if (response.ok) {
+  window.location.href = "/start/step-2";
+
+} else {
+  alert("Submission failed. Please try again.");
+}
+
+} else {
+  alert("Submission failed. Please try again.");
+}
 
   } catch (err) {
     alert("Something went wrong.");
