@@ -1058,13 +1058,13 @@ function scrollCarousel(dir){
 }
 
 .ss-slide{
-  flex:0 0 100%;
-  width:100%;
+  flex:0 0 auto;
 }
 
 .ss-grid{
   display:flex;
   gap:32px;
+  padding:0 60px;
 }
 
 .ss-card{
@@ -1121,8 +1121,8 @@ function scrollCarousel(dir){
   font-size:22px;
 }
 
-.ss-prev{left:-50px;}
-.ss-next{right:-50px;}
+.ss-prev{left:10px;}
+.ss-next{right:10px;}
 
 @media(max-width:900px){
   .ss-grid{grid-template-columns:1fr;}
