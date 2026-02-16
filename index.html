@@ -981,91 +981,25 @@ body{
 
 <script>
 const track = document.getElementById('carouselTrack');
-let isMoving = false;
 
-function getSlideWidth(){
-  return track.parentElement.offsetWidth; // عرض الكاروسيل الحقيقي
-}
+function scrollCarousel(dir){
 
-function jumpTo(position){
-  track.style.scrollSnapType = 'none';
-  track.scrollLeft = position;
-  track.offsetHeight; // force reflow
-  track.style.scrollSnapType = 'x mandatory';
-}
+  const card = track.querySelector('.ss-card');
+  if(!card) return;
 
-window.addEventListener('load', ()=>{
-  const w = getSlideWidth();
-  jumpTo(w); // نبدأ على أول سلايد حقيقي
-});
+  const style = window.getComputedStyle(track);
+  const gap = parseInt(style.gap) || 32;
 
-window.addEventListener('resize', ()=>{
-  const w = getSlideWidth();
-  jumpTo(w);
-});
+  const move = card.offsetWidth + gap;
 
-function scrollCarousel(direction){
-
-  if(isMoving) return;
-  isMoving = true;
-
-  const w = getSlideWidth();
-  const current = Math.round(track.scrollLeft / w);
-  const target = (current + direction) * w;
-
-  track.style.scrollSnapType = 'none';
-
-  track.scrollTo({
-    left: target,
-    behavior: 'smooth'
+  track.scrollBy({
+    left: dir * move,
+    behavior:'smooth'
   });
 
-  setTimeout(()=>{
-
-    const max = track.scrollWidth - w;
-
-    if(track.scrollLeft >= max - 2){
-      jumpTo(w);
-    }
-    else if(track.scrollLeft <= 2){
-      jumpTo(max - w);
-    }
-    else{
-      track.style.scrollSnapType = 'x mandatory';
-    }
-
-    isMoving = false;
-
-  },550);
 }
-
-/* LOOP بعد السحب اليدوي */
-
-let scrollTimer;
-
-track.addEventListener('scroll',()=>{
-
-  if(isMoving) return;
-
-  clearTimeout(scrollTimer);
-
-  scrollTimer=setTimeout(()=>{
-
-    const w = getSlideWidth();
-    const max = track.scrollWidth - w;
-
-    if(track.scrollLeft >= max - 2){
-      jumpTo(w);
-    }
-    else if(track.scrollLeft <= 2){
-      jumpTo(max - w);
-    }
-
-  },120);
-
-});
-
 </script>
+
 
 
 
@@ -1106,17 +1040,21 @@ track.addEventListener('scroll',()=>{
 
 .ss-carousel-outer{
   position:relative;
-  overflow:hidden;
   width:100%;
 }
 
 .ss-carousel-track{
   display:flex;
   gap:32px;
-  width:max-content;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  scroll-padding: 0;
+  overflow-x:auto;
+  scroll-behavior:smooth;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  padding-bottom:10px;
+}
+
+.ss-carousel-track::-webkit-scrollbar{
+  display:none;
 }
 
 .ss-slide{
