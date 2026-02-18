@@ -996,19 +996,30 @@ body{
 <script>
 const track = document.getElementById('carouselTrack');
 
-function scrollCarousel(dir){
+if(track){
 
-  const card = track.querySelector('.ss-card');
-  if(!card) return;
+  // duplicate cards for infinite illusion
+  track.innerHTML += track.innerHTML;
 
-  const style = window.getComputedStyle(track);
-  const gap = parseInt(style.gap) || 32;
+  function scrollCarousel(dir){
 
-  const move = card.offsetWidth + gap;
+    const card = track.querySelector('.ss-card');
+    if(!card) return;
 
-  track.scrollBy({
-    left: dir * move,
-    behavior:'smooth'
+    const style = window.getComputedStyle(track);
+    const gap = parseInt(style.gap) || 32;
+    const move = card.offsetWidth + gap;
+
+    track.scrollBy({ left: dir * move, behavior:'smooth' });
+
+  }
+
+  // auto reset for infinite feel
+  track.addEventListener('scroll',()=>{
+    const half = track.scrollWidth/2;
+    if(track.scrollLeft >= half){
+      track.scrollLeft -= half;
+    }
   });
 
 }
@@ -1017,10 +1028,10 @@ function scrollCarousel(dir){
 
 
 
+
 <style>
  .success-stories{
-  background:#F6F1EA;
-  padding:var(--section-pad) 24px;
+  background:#EFE7DC;    padding:var(--section-pad) 24px;
   scroll-margin-top:120px;
 }
 
@@ -1084,9 +1095,13 @@ function scrollCarousel(dir){
 .ss-card{
   background:#FCFAF7;
   border:1px solid rgba(0,0,0,0.08);
-  padding:40px;
-  width:320px;
+  padding:36px;
+  width:340px;
+  height:260px;              /* يخلي كل الكروت نفس الارتفاع */
   flex:0 0 auto;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
 }
 
 .ss-client-header{
@@ -1121,7 +1136,12 @@ function scrollCarousel(dir){
 .ss-testimonial{
   font-style:italic;
   line-height:1.6;
+  overflow:hidden;
+  display:-webkit-box;
+  -webkit-line-clamp:4;
+  -webkit-box-orient:vertical;
 }
+
 
 .ss-nav-btn{
   position:absolute;
