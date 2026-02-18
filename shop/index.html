@@ -80,9 +80,10 @@ body{
 /* GRID */
 
 .shop-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:32px;
+ display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(340px,420px));
+  justify-content:center;
+  gap:28px;
 }
 
 /* CARD */
@@ -92,7 +93,7 @@ body{
 
   border:1px solid var(--border);
   border-radius:14px;
-  padding:48px;
+  padding:36px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
@@ -108,8 +109,9 @@ body{
 /* IMAGE */
 
 .product-image{
-  width:100%;
-  margin-bottom:36px;
+  width:90%;
+  margin:0 auto 28px;
+  display:block;
 
   /* المهم */
   background:transparent;
@@ -122,7 +124,7 @@ body{
 
 .product-title{
   font-family:var(--serif);
-  font-size:1.8rem;
+  font-size:1.55rem;
   color:var(--brand-red);
   margin-bottom:16px;
 }
