@@ -214,6 +214,11 @@ font-style: italic;
 
   transition:all .2s ease;
 }
+.no-thanks-section{
+  background:#EFE7DC;
+  padding:40px 0 90px;
+}
+
 
 .no-thanks:hover{
   opacity:1;
@@ -835,7 +840,11 @@ letter-spacing:.5px;
                                         <label class="flex items-start gap-3 cursor-pointer group mb-6">
                                             <input type="checkbox" class="mt-1 accent-burgundy shrink-0" required>
                                             <span style="font-size:15px; line-height:1.6;" class="opacity-80 group-hover:opacity-100 transition-opacity"">
-                                                I agree to the Freedom Offer Formula™ <button type="button" onclick="showView('terms')" class="underline">Terms of Purchase</button> and Privacy Policy.
+                                              I agree to the Freedom Offer Formula™ 
+<a href="/terms_conditions" class="underline">Terms of Purchase</a>
+and 
+<a href="/privacy_policy" class="underline">Privacy Policy</a>.
+
                                             </span>
                                         </label>
                                      <div style="
@@ -914,7 +923,8 @@ $37
         </div>
 
         
-                 <div style="text-align:center; margin:40px 0 120px;">
+                 <div class="no-thanks-section" style="text-align:center;">
+
  <a href="/start/thank-you" class="no-thanks">
 No thanks, I’m ok not turning this into income yet
 </a>
