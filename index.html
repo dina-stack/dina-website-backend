@@ -191,10 +191,10 @@
     }
 
     /* OVERVIEW */
-    #overview{
-      background:var(--brand-beige);
-      padding:40px 24px 72px; /* reduced top gap from hero */
-    }
+   #overview{
+  background:var(--brand-beige);
+  padding:var(--section-pad) 24px;
+}
 
     .container{
       max-width:1100px;
@@ -471,8 +471,8 @@ header{
 <style>
 /* ABOUT */
 .about{
-  background:#E9DFD2;
-  padding:96px 24px;
+ background:#E9DFD2;
+  padding:var(--section-pad) 24px;
 }
 
 .about-wrap{
@@ -576,6 +576,8 @@ header{
   --white:#FFF;
   --serif:"Playfair Display", serif;
   --sans:Inter, sans-serif;
+    /* unified spacing */
+  --section-pad:72px;
 }
 
 *{
@@ -593,7 +595,7 @@ body{
 /* SHOP SECTION */
 
 .shop-section{
-  padding:100px 24px;
+ padding:var(--section-pad) 24px;
 }
 
 .shop-container{
@@ -1016,7 +1018,7 @@ function scrollCarousel(dir){
 <style>
  .success-stories{
   background:#F6F1EA;
-  padding:120px 24px 100px;
+  padding:var(--section-pad) 24px;
   scroll-margin-top:120px;
 }
 
