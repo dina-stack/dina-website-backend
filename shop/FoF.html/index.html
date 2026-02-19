@@ -801,6 +801,8 @@ if (error) {
        body: JSON.stringify({
   productId: "freedomOfferFormula",
   paymentMethodId: paymentMethod.id,
+  name: name,
+  email: email,
   addUpsell: document.getElementById("upsell-checkbox")?.checked || false
 }),
     });
