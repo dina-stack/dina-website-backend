@@ -54,10 +54,16 @@ router.get("/fof", (req, res) => {
 });
 
 
+
 // Freedom Engine
 router.get("/freedom-engine", (req, res) => {
   res.sendFile(path.join(root, "shop", "freedom-engine", "index.html"));
 });
+
+router.get("/contact", (req, res) => {
+  res.sendFile(path.join(root, "contact", "index.html"));
+});
+
 
 // FOOTER PARTIAL
 router.get("/footer", (req, res) => {

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+ --burgundy:#6B1D28;
+ --beige:#F6F1EA;
+ --card:#FCFAF7;
+ --border:rgba(0,0,0,0.08);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+ font-family:Inter,sans-serif;
+ background:var(--beige);
+ color:#000;
+}
+
+/* HEADER */
+
+header{
+ position:sticky;
+ top:0;
+ z-index:1000;
+ background:var(--beige);
+ border-bottom:1px solid var(--border);
+ padding:18px 32px;
+ display:flex;
+ align-items:center;
+}
+
+.logo img{
+ height:40px;
+ display:block;
+}
+
+/* PAGE */
+
+.page{
+ padding:120px 24px 100px;
+}
+
+/* CARD */
+
+.container{
+ max-width:760px;
+ margin:auto;
+ padding:56px;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:18px;
+ box-shadow:0 18px 40px rgba(0,0,0,0.05);
+}
+
+/* TITLE */
+
+h1{
+ font-family:"Playfair Display",serif;
+ color:var(--burgundy);
+ font-size:clamp(36px,4vw,46px);
+ margin-bottom:42px;
+ text-align:center;
+}
+
+/* INPUTS */
+
+input, textarea{
+ width:100%;
+ padding:16px 18px;
+ margin-bottom:20px;
+ border:1px solid var(--border);
+ background:#fff;
+ font-size:15px;
+ border-radius:10px;
+ transition:.18s;
+}
+
+input:focus, textarea:focus{
+ outline:none;
+ border-color:var(--burgundy);
+ box-shadow:0 0 0 3px rgba(107,29,40,0.08);
+}
+
+textarea{
+ min-height:150px;
+ resize:vertical;
+}
+
+/* BUTTON */
+
+button{
+ width:100%;
+ padding:20px;
+ background:var(--burgundy);
+ color:#fff;
+ border:none;
+ font-weight:600;
+ letter-spacing:.08em;
+ cursor:pointer;
+ border-radius:12px;
+ font-size:14px;
+ box-shadow:0 10px 24px rgba(107,29,40,0.18);
+ transition:.15s;
+}
+
+button:hover{
+ transform:translateY(-1px);
+ box-shadow:0 16px 32px rgba(107,29,40,0.25);
+}
+
+@media(max-width:700px){
+.container{padding:40px 26px}
+.page{padding:80px 18px}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="/">
+    <img src="https://i.ibb.co/Wvt1yxhF/13-png.png" alt="Dina Shakir logo">
+  </a>
+</header>
+
+<!-- PAGE -->
+<div class="page">
+
+<div class="container">
+
+<h1>I’m here to help!</h1>
+
+<form action="mailto:dina@dinashakir.com" method="POST" enctype="text/plain">
+
+<input type="text" name="name" placeholder="Name" required>
+
+<input type="email" name="email" placeholder="Email Field" required>
+
+<input type="text" name="subject" placeholder="Subject" required>
+
+<textarea name="message" placeholder="Your Inquiry" required></textarea>
+
+<button type="submit">Send Inquiry</button>
+
+</form>
+
+</div>
+
+</div>
+
+<!-- FOOTER LOAD -->
+<div id="footer-placeholder"></div>
+
+<script>
+fetch("/footer")
+.then(res => res.text())
+.then(data=>{
+ document.getElementById("footer-placeholder").innerHTML=data;
+});
+</script>
+
+</body>
+</html>
