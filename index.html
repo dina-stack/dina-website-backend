@@ -307,6 +307,101 @@
 header{
   margin:0;
 }
+/* WORK WITH ME SECTION */
+
+.work-section{
+  background:#F6F1EA;
+  padding:72px 24px;
+}
+
+.work-container{
+  max-width:1100px;
+  margin:auto;
+}
+
+.work-title{
+  text-align:center;
+  font-family:"Playfair Display", serif;
+  font-size:clamp(2.2rem,4vw,2.8rem);
+  color:#6B1D28;
+  margin-bottom:64px;
+}
+
+.work-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:40px;
+}
+
+.work-card{
+  position:relative;
+  padding:40px 28px 32px;
+}
+
+.work-number{
+  position:absolute;
+  top:-30px;
+  left:0;
+  font-family:"Playfair Display", serif;
+  font-size:140px;
+  color:#6B1D28;
+  opacity:0.08;
+  pointer-events:none;
+}
+
+.work-label{
+  font-size:13px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:600;
+  opacity:.7;
+  margin-bottom:10px;
+}
+
+.work-name{
+  font-family:"Playfair Display", serif;
+  font-size:2rem;
+  color:#2D2926;
+  margin-bottom:16px;
+}
+
+.work-text{
+  line-height:1.7;
+  color:rgba(0,0,0,0.65);
+  margin-bottom:26px;
+}
+
+.work-btn{
+  display:inline-block;
+  background:#6B1D28;
+  color:#fff;
+  padding:14px 26px;
+  border-radius:40px;
+  text-decoration:none;
+  font-weight:600;
+  box-shadow:0 6px 0 #2D2926;
+  transition:.2s;
+}
+
+.work-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+
+@media(max-width:900px){
+
+  .work-grid{
+    grid-template-columns:1fr;
+    gap:60px;
+  }
+
+  .work-number{
+    font-size:100px;
+    top:-20px;
+  }
+
+}
+
 
   </style>
 </head>
@@ -1206,6 +1301,68 @@ document.querySelectorAll('.nav-scroll').forEach(link=>{
 
 });
 </script>
+
+<section class="work-section" id="work-with-me-home">
+
+  <div class="work-container">
+
+    <h2 class="work-title">How to work with me</h2>
+
+    <div class="work-grid">
+
+      <!-- CARD 1 -->
+      <div class="work-card">
+
+        <div class="work-number">01</div>
+
+        <div class="work-label">PRIVATE</div>
+        <h3 class="work-name">1:1 Coaching</h3>
+
+        <p class="work-text">
+          Work with me closely to clarify your offer, positioning, and next business moves with direct support and strategy tailored to you.
+        </p>
+
+        <a href="/work-with-me" class="work-btn">Learn More</a>
+
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="work-card">
+
+        <div class="work-number">02</div>
+
+        <div class="work-label">PROGRAM</div>
+        <h3 class="work-name">Scaling With Systems</h3>
+
+        <p class="work-text">
+          Build the backend structure, systems, and sales flow that allow your business to grow sustainably without constant hustle.
+        </p>
+
+        <a href="/work-with-me" class="work-btn">Learn More</a>
+
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="work-card">
+
+        <div class="work-number">03</div>
+
+        <div class="work-label">TOOL</div>
+        <h3 class="work-name">Freedom Engine</h3>
+
+        <p class="work-text">
+          Your AI-powered support system helping you build smarter, create faster, and move forward with clarity.
+        </p>
+
+        <a href="/freedom-engine" class="work-btn">Get Access</a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 <script>
 fetch("/footer")
