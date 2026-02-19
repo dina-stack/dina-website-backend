@@ -1,26 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work With Me | Dina Shakir</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--brand-red:#6B1E2B;
+--brand-beige:#F6F1EA;
+--text-main:#000;
+--text-muted:rgba(0,0,0,0.62);
+--border:rgba(0,0,0,0.10);
+--serif:"Playfair Display", serif;
+--sans:Inter, sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+font-family:var(--sans);
+background:var(--brand-beige);
+color:var(--text-main);
+}
+
+/* HEADER */
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:var(--brand-beige);
+border-bottom:1px solid var(--border);
+padding:18px 32px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo img{height:40px}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:40px;
+}
+
+nav a{
+text-decoration:none;
+color:var(--text-main);
+font-size:14px;
+letter-spacing:.12em;
+text-transform:uppercase;
+opacity:.85;
+}
+
+nav a:hover{color:var(--brand-red);opacity:1}
+
+/* PAGE HERO */
+
+.page-hero{
+padding:90px 24px 40px;
+text-align:center;
+}
+
+.page-title{
+font-family:var(--serif);
+font-size:clamp(2.6rem,5vw,3.4rem);
+color:var(--brand-red);
+}
+
+/* WORK SECTION */
+
+.work-section{
+padding:60px 24px 100px;
+}
+
+.work-container{
+max-width:1100px;
+margin:auto;
+}
+
+.work-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:40px;
+}
+
+.work-card{
+position:relative;
+padding:40px 28px 32px;
+display:flex;
+flex-direction:column;
+}
+
+.work-number{
+position:absolute;
+top:-30px;
+left:0;
+font-family:var(--serif);
+font-size:150px;
+color:var(--brand-red);
+opacity:.08;
+pointer-events:none;
+}
+
+.work-label{
+font-size:13px;
+letter-spacing:.12em;
+text-transform:uppercase;
+font-weight:600;
+opacity:.7;
+margin-bottom:10px;
+}
+
+.work-name{
+font-family:var(--serif);
+font-size:2rem;
+margin-bottom:16px;
+}
+
+.work-text{
+line-height:1.7;
+color:var(--text-muted);
+margin-bottom:26px;
+flex-grow:1;
+}
+
+.work-btn{
+display:inline-block;
+background:var(--brand-red);
+color:#fff;
+padding:14px 26px;
+border-radius:40px;
+text-decoration:none;
+font-weight:600;
+margin-top:auto;
+box-shadow:0 6px 0 #2D2926;
+transition:.2s;
+}
+
+.work-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+
+@media(max-width:900px){
+.work-grid{grid-template-columns:1fr}
+}
+
+</style>
 </head>
-<div id="footer"></div>
-
-
 
 <body>
 
-<h1>Page</h1>
+<header>
+<a class="logo" href="/">
+<img src="https://i.ibb.co/Wvt1yxhF/13-png.png" alt="Dina Shakir logo">
+</a>
+
+<nav>
+<ul>
+<li><a href="/">Home</a></li>
+<li><a href="/shop">Shop</a></li>
+<li><a href="/work-with-me">Work With Me</a></li>
+</ul>
+</nav>
+</header>
+
+
+<section class="page-hero">
+<h1 class="page-title">How to work with me</h1>
+</section>
+
+
+<section class="work-section">
+
+<div class="work-container">
+
+<div class="work-grid">
+
+<div class="work-card">
+<div class="work-number">01</div>
+<div class="work-label">PRIVATE</div>
+<h3 class="work-name">1:1 Coaching</h3>
+<p class="work-text">
+Work with me closely to clarify your offer, positioning, and next business moves with direct support and strategy tailored to you.
+</p>
+<a href="/work-with-me" class="work-btn">Learn More</a>
+</div>
+
+<div class="work-card">
+<div class="work-number">02</div>
+<div class="work-label">PROGRAM</div>
+<h3 class="work-name">Scaling With Systems</h3>
+<p class="work-text">
+Build the backend structure, systems, and sales flow that allow your business to grow sustainably without constant hustle.
+</p>
+<a href="/work-with-me" class="work-btn">Learn More</a>
+</div>
+
+<div class="work-card">
+<div class="work-number">03</div>
+<div class="work-label">TOOL</div>
+<h3 class="work-name">Freedom Engine</h3>
+<p class="work-text">
+Your AI-powered support system helping you build smarter, create faster, and move forward with clarity.
+</p>
+<a href="/freedom-engine" class="work-btn">Get Access</a>
+</div>
+
+</div>
+</div>
+</section>
+
+
 <div id="footer-placeholder"></div>
 
 <script>
 fetch("/footer")
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById("footer-placeholder").innerHTML = data;
-  });
+.then(res=>res.text())
+.then(data=>{
+document.getElementById("footer-placeholder").innerHTML=data;
+});
 </script>
-
 
 </body>
 </html>
