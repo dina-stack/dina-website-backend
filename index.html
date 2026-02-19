@@ -24,7 +24,6 @@
     *{box-sizing:border-box;margin:0;padding:0;}
     html{
   scroll-behavior:smooth;
-  scroll-padding-top:110px;
 }
 
     body{
@@ -321,8 +320,8 @@ header{
 
     <nav aria-label="Primary">
       <ul>
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="#success-stories">SUCCESS STORIES</a></li>
+        <li><a href="#about" class="nav-scroll">ABOUT</a></li>
+        <li><a href="#success-stories" class="nav-scroll">SUCCESS STORIES</a></li>
         <li><a href="/shop">SHOP</a></li>
         <li><a href="/work-with-me">WORK WITH ME</a></li>
         <li><a href="#follow">FOLLOW</a></li>
@@ -1179,6 +1178,34 @@ line-clamp:4;
   <div id="follow"></div>
   <div id="contact"></div>
   <div id="footer-placeholder"></div>
+
+  <script>
+document.querySelectorAll('.nav-scroll').forEach(link=>{
+
+  link.addEventListener('click',function(e){
+    e.preventDefault();
+
+    const id = this.getAttribute('href');
+    const section = document.querySelector(id);
+    if(!section) return;
+
+    const rect = section.getBoundingClientRect();
+    const absoluteTop = window.scrollY + rect.top;
+
+    const sectionMiddle = absoluteTop + (section.offsetHeight/2);
+    const screenMiddle = window.innerHeight/2;
+
+    const target = sectionMiddle - screenMiddle;
+
+    window.scrollTo({
+      top: target,
+      behavior:'smooth'
+    });
+
+  });
+
+});
+</script>
 
 <script>
 fetch("/footer")
