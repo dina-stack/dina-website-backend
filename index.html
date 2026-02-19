@@ -336,6 +336,9 @@ header{
 .work-card{
   position:relative;
   padding:40px 28px 32px;
+  display:flex;
+  flex-direction:column;
+  height:100%;
 }
 
 .work-number{
@@ -369,6 +372,7 @@ header{
   line-height:1.7;
   color:rgba(0,0,0,0.65);
   margin-bottom:26px;
+   flex-grow:1;
 }
 
 .work-btn{
@@ -381,6 +385,8 @@ header{
   font-weight:600;
   box-shadow:0 6px 0 #2D2926;
   transition:.2s;
+    margin-top:auto;
+
 }
 
 .work-btn:hover{
@@ -1272,7 +1278,7 @@ line-clamp:4;
 
   <div id="follow"></div>
   <div id="contact"></div>
-  <div id="footer-placeholder"></div>
+
 
   <script>
 document.querySelectorAll('.nav-scroll').forEach(link=>{
@@ -1363,6 +1369,8 @@ document.querySelectorAll('.nav-scroll').forEach(link=>{
   </div>
 
 </section>
+
+<div id="footer-placeholder"></div>
 
 <script>
 fetch("/footer")
