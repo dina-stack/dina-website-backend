@@ -1098,11 +1098,9 @@ const track = document.getElementById('carouselTrack');
 
 if(track){
 
-  // duplicate cards for infinite illusion
   track.innerHTML += track.innerHTML;
 
   function scrollCarousel(dir){
-
     const card = track.querySelector('.ss-card');
     if(!card) return;
 
@@ -1111,10 +1109,8 @@ if(track){
     const move = card.offsetWidth + gap;
 
     track.scrollBy({ left: dir * move, behavior:'smooth' });
-
   }
 
-  // auto reset for infinite feel
   track.addEventListener('scroll',()=>{
     const half = track.scrollWidth/2;
     if(track.scrollLeft >= half){
@@ -1130,9 +1126,9 @@ if(track){
 
 
 <style>
- .success-stories{
-  background:#EFE7DC;    padding:var(--section-pad) 24px;
-  scroll-margin-top:120px;
+.success-stories{
+  background:#F6F1EA;   /* نفس باقي السكشنز */
+  padding:var(--section-pad) 24px;
 }
 
 .ss-container{
@@ -1184,13 +1180,15 @@ if(track){
 
 .ss-slide{
   flex:0 0 auto;
+  padding:0 16px;
 }
 
 .ss-grid{
   display:flex;
   gap:32px;
-  padding:0 60px;
+  padding:0;
 }
+
 
 .ss-card{
   background:#FCFAF7;
