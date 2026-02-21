@@ -1098,25 +1098,42 @@ const track = document.getElementById('carouselTrack');
 
 if(track){
 
+  // duplicate once for seamless loop
   track.innerHTML += track.innerHTML;
 
-  function scrollCarousel(dir){
+  let speed = 0.3;   // السرعة (عدلي الرقم لو بدك)
+  let paused = false;
+
+  function loop(){
+
+    if(!paused){
+      track.scrollLeft += speed;
+
+      // لما يوصل لنص المحتوى يرجع لنفس النقطة بالبداية بدون jump
+      if(track.scrollLeft >= track.scrollWidth/2){
+        track.scrollLeft = 0;
+      }
+    }
+
+    requestAnimationFrame(loop);
+  }
+
+  loop();
+
+  // pause on hover (اختياري بس حلو UX)
+  track.addEventListener('mouseenter',()=> paused=true);
+  track.addEventListener('mouseleave',()=> paused=false);
+
+  // buttons still work
+  window.scrollCarousel = function(dir){
     const card = track.querySelector('.ss-card');
     if(!card) return;
 
-    const style = window.getComputedStyle(track);
-    const gap = parseInt(style.gap) || 32;
+    const gap = 32;
     const move = card.offsetWidth + gap;
 
     track.scrollBy({ left: dir * move, behavior:'smooth' });
   }
-
-  track.addEventListener('scroll',()=>{
-    const half = track.scrollWidth/2;
-    if(track.scrollLeft >= half){
-      track.scrollLeft -= half;
-    }
-  });
 
 }
 </script>
@@ -1127,7 +1144,7 @@ if(track){
 
 <style>
 .success-stories{
-  background:#F6F1EA;   /* نفس باقي السكشنز */
+    background:#EFE7DC;    /* نفس باقي السكشنز */
   padding:var(--section-pad) 24px;
 }
 
