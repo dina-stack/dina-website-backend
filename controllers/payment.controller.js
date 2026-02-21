@@ -62,7 +62,7 @@ const paymentIntent = await stripe.paymentIntents.create({
 
 res.json({
   success: true,
-  redirect: "/thank-you/fof",
+  redirect: "/FoF/thank_you.html",
 
   metadata: {
     productId: productId,

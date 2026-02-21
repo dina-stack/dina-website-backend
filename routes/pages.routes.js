@@ -53,6 +53,13 @@ router.get("/fof", (req, res) => {
   res.sendFile(path.join(root, "shop", "FoF.html", "index.html"));
 });
 
+router.get("/fof/thank_you", (req, res) => {
+  res.sendFile(path.join(root, "shop", "FoF", "thank_you", "index.html"));
+});
+
+router.get("/fof/wb_thankyou", (req, res) => {
+  res.sendFile(path.join(root, "shop", "FoF", "WB_thankyou.html"));
+});
 
 
 // Freedom Engine

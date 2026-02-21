@@ -10,7 +10,7 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 router.post("/pay", async (req, res) => {
   try {
     const { paymentMethodId, name, email, addUpsell } = req.body;
-const addWorkbook = addUpsell;
+const addWorkbook = !!addUpsell;
 
 
     if (!paymentMethodId || !email) {
@@ -31,7 +31,7 @@ const addWorkbook = addUpsell;
     enabled:true,
     allow_redirects:"never"
   },
-  receipt_email: email,
+
   description: addWorkbook
     ? "Freedom Offer Formula + Workbook"
     : "Freedom Offer Formula",
@@ -93,7 +93,7 @@ const addWorkbook = addUpsell;
 
     return res.json({
   success:true,
-  redirect:addWorkbook ? "/fof/wb-thankyou" : "/fof/wb-thankyou"
+  redirect:addWorkbook ? "/fof/wb_thankyou" : "/fof/thank_you"
 });
 
 
