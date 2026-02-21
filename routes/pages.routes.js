@@ -54,11 +54,12 @@ router.get("/fof", (req, res) => {
 });
 
 router.get("/fof/thank_you", (req, res) => {
-  res.sendFile(path.join(root, "shop", "FoF", "thank_you", "index.html"));
+  res.sendFile(path.join(root, "shop", "FoF.html", "Thank_you.html"));
 });
 
+
 router.get("/fof/wb_thankyou", (req, res) => {
-  res.sendFile(path.join(root, "shop", "FoF", "WB_thankyou.html"));
+  res.sendFile(path.join(root, "shop", "FoF.html", "WB-thankyou.html"));
 });
 
 
