@@ -795,16 +795,16 @@ if (error) {
             // Send ID to backend for processing
             try {
     const response = await fetch("/pay", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-       body: JSON.stringify({
-  productId: "freedomOfferFormula",
-  paymentMethodId: paymentMethod.id,
-  name: name,
-  email: email,
-  addUpsell: document.getElementById("upsell-checkbox")?.checked || false
-}),
-    });
+  method:"POST",
+  headers:{ "Content-Type":"application/json" },
+  body: JSON.stringify({
+    paymentMethodId: paymentMethod.id,
+    name: name,
+    email: email,
+    addUpsell: document.getElementById("upsell-checkbox")?.checked || false
+  })
+});
+
 
     const result = await response.json();
 

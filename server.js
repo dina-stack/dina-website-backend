@@ -11,6 +11,8 @@ app.use(express.json({
   }
 }));
 
+app.use(express.static(path.join(__dirname)));
+
 /* ---------- ROUTES ---------- */
 const webhookRoutes = require("./routes/webhook.routes");
 app.use("/webhook", webhookRoutes);
@@ -23,9 +25,6 @@ app.use("/", paymentRoutes);
 
 const leadRoutes = require("./routes/lead.routes");
 app.use("/", leadRoutes);
-
-/* ---------- STATIC FILES (MOVED HERE) ---------- */
-app.use(express.static(path.join(__dirname)));
 
 /* ---------- ERROR HANDLER LAST ---------- */
 const errorMiddleware = require("./middlewares/error.middleware");
