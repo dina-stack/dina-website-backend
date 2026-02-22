@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You | Dina Shakir</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--beige:#F6F1EA;
+--red:#6B1E2B;
+--text:#000;
+--muted:rgba(0,0,0,.6);
+--card:#fff;
+--stroke:rgba(0,0,0,.08);
+--radius:18px;
+}
+
+body{
+margin:0;
+font-family:Inter,sans-serif;
+background:var(--beige);
+color:var(--text);
+min-height:100vh;
+display:flex;
+flex-direction:column;
+}
+
+/* LOGO fixed top-left */
+.logo-fixed{
+position:fixed;
+top:24px;
+left:28px;
+z-index:1000;
+}
+
+.logo-fixed img{
+height:46px;
+cursor:pointer;
+display:block;
+}
+
+/* CENTER CONTENT */
+.center{
+flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:80px 20px 40px;
+}
+
+.card{
+background:var(--card);
+border:1px solid var(--stroke);
+border-radius:var(--radius);
+padding:64px 54px;
+text-align:center;
+max-width:600px;
+box-shadow:0 20px 50px rgba(0,0,0,.12);
+}
+
+h1{
+font-family:"Playfair Display",serif;
+font-size:46px;
+color:var(--red);
+margin:0 0 22px;
+letter-spacing:-0.02em;
+}
+
+p{
+font-size:19px;
+color:var(--muted);
+line-height:1.65;
+margin:0;
+}
+
+@media(max-width:700px){
+.card{padding:46px 28px}
+h1{font-size:36px}
+p{font-size:17px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- FIXED LOGO -->
+<div class="logo-fixed">
+<img src="https://i.ibb.co/Wvt1yxhF/13-png.png" onclick="window.location.href='/'">
+</div>
+
+<div class="center">
+<div class="card">
+
+<h1>You’re on the waitlist</h1>
+
+<p>
+You have officially joined the waitlist and you will be informed once the Freedom Engine opens up.
+</p>
+
+</div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script>
+fetch("/footer")
+.then(r=>r.text())
+.then(d=>{
+document.getElementById("footer-placeholder").innerHTML=d;
+});
+</script>
+
+</body>
+</html>

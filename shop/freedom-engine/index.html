@@ -150,7 +150,9 @@ h1,.hero-lead{text-align:left;}
 <header class="hero">
 <div class="hero-inner">
 <div class="hero-top">
-<img class="logo" src="https://i.ibb.co/sdwGQ8c8/LOGO-New-Title.png">
+<a href="/" style="display:inline-block">
+  <img class="logo" src="https://i.ibb.co/sdwGQ8c8/LOGO-New-Title.png" alt="Dina Shakir logo">
+</a>
 </div>
 
 <h1>The Freedom Engine</h1>
@@ -181,9 +183,13 @@ Join the priority list and get early access, bonuses, and launch updates.
 <div class="form-card">
 
 <form class="form" id="freedom-form">
-<input class="field" type="text" placeholder="First Name" required>
-<input class="field" type="email" placeholder="Email Address" required>
+
+<input class="field" name="name" type="text" placeholder="First Name" required>
+
+<input class="field" name="email" type="email" placeholder="Email Address" required>
+
 <button class="btn" type="submit">Join the Waitlist</button>
+
 </form>
 
 <div class="privacy">We respect your privacy. Unsubscribe anytime.</div>
@@ -195,34 +201,36 @@ Join the priority list and get early access, bonuses, and launch updates.
 </main>
 
 <script>
-const form=document.getElementById("freedom-form");
+const form = document.getElementById("freedom-form");
 
-form.addEventListener("submit",async(e)=>{
-e.preventDefault();
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-const name=form.querySelector('input[type="text"]').value;
-const email=form.querySelector('input[type="email"]').value;
+  const name = form.elements["name"].value.trim();
+  const email = form.elements["email"].value.trim();
 
-try{
-const res=await fetch("/freedom-waitlist",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-name:name,
-email:email,
-listId:17
-})
-});
+  try {
 
-if(res.ok){
-window.location.href="/thank-you";
-}else{
-alert("Submission failed");
-}
+    const res = await fetch("/freedom-waitlist", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+        listId: 17
+      })
+    });
 
-}catch{
-alert("Something went wrong");
-}
+    if (res.ok) {
+      window.location.href = "/thank-you";
+    } else {
+      alert("Submission failed");
+    }
+
+  } catch (err) {
+    console.error(err);
+    alert("Something went wrong");
+  }
 });
 </script>
 

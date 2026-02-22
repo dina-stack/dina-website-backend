@@ -41,4 +41,43 @@ router.post("/framework-lead", async (req,res)=>{
   }
 });
 
+router.post("/freedom-waitlist", async (req,res)=>{
+  try{
+
+    const {email,name} = req.body;
+
+    const contact = await axios.post(
+      "https://dinashakir.api-us1.com/api/3/contact/sync",
+      { contact:{ email, firstName:name }},
+      { headers:{
+        "Api-Token":process.env.ACTIVE_CAMPAIGN_TOKEN,
+        "Content-Type":"application/json"
+      }}
+    );
+
+    const contactId = contact.data.contact.id;
+
+    await axios.post(
+      "https://dinashakir.api-us1.com/api/3/contactLists",
+      {
+        contactList:{
+          list:17,   // ← مهم جداً
+          contact:contactId,
+          status:1
+        }
+      },
+      { headers:{
+        "Api-Token":process.env.ACTIVE_CAMPAIGN_TOKEN,
+        "Content-Type":"application/json"
+      }}
+    );
+
+    res.json({success:true});
+
+  }catch(err){
+    console.error("Freedom waitlist error:", err.response?.data || err.message);
+    res.json({success:false});
+  }
+});
+
 module.exports = router;
