@@ -68,9 +68,9 @@ router.get("/freedom-engine", (req, res) => {
   res.sendFile(path.join(root, "shop", "freedom-engine", "index.html"));
 });
 
-router.get("/thank_you", (req,res)=>{
+router.get("/freedom-engine/thank_you", (req,res)=>{
   res.sendFile(
-    path.join(root, "freedom-engine", "Thank_you.html")
+    path.join(root, "shop", "freedom-engine", "Thank_you.html")
   );
 });
 
