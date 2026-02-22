@@ -27,19 +27,52 @@ body{
 /* HEADER */
 
 header{
- position:sticky;
- top:0;
- z-index:1000;
- background:var(--beige);
- border-bottom:1px solid var(--border);
- padding:18px 32px;
- display:flex;
- align-items:center;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#F6F1EA;
+  border-bottom:1px solid rgba(0,0,0,0.10);
+  padding:18px 32px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
 }
 
 .logo img{
- height:40px;
- display:block;
+  height:40px;
+  display:block;
+}
+
+nav ul{
+  display:flex;
+  list-style:none;
+  gap:46px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+nav a{
+  text-decoration:none;
+  color:#000;
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  opacity:0.85;
+  transition:opacity .2s,color .2s;
+}
+
+nav a:hover{
+  opacity:1;
+  color:#6B1E2B;
 }
 
 /* PAGE */
@@ -131,6 +164,17 @@ button:hover{
   <a class="logo" href="/">
     <img src="https://i.ibb.co/Wvt1yxhF/13-png.png" alt="Dina Shakir logo">
   </a>
+
+  <nav aria-label="Primary">
+    <ul>
+      <li><a href="/#about">ABOUT</a></li>
+      <li><a href="/#success-stories">SUCCESS STORIES</a></li>
+      <li><a href="/shop">SHOP</a></li>
+      <li><a href="/#work-with-me-home">WORK WITH ME</a></li>
+      <li><a href="/#follow">FOLLOW</a></li>
+      <li><a href="/contact">CONTACT</a></li>
+    </ul>
+  </nav>
 </header>
 
 <!-- PAGE -->
