@@ -4,51 +4,50 @@ const path = require("path");
 
 const root = path.join(__dirname, "..");
 
-// HOME
+/* ================= HOME ================= */
+
 router.get("/", (req, res) => {
   res.sendFile(path.join(root, "index.html"));
 });
 
-// START (lead magnet page)
+/* ================= START FUNNEL ================= */
+
 router.get("/start", (req, res) => {
   res.sendFile(path.join(root, "start", "index.html"));
 });
 
-// THANK YOU — lead magnet
 router.get("/start/thank-you", (req, res) => {
   res.sendFile(path.join(root, "start", "thank-you.html"));
 });
 
-// STEP 2 (upsell bridge)  ✅ FIXED URL STRUCTURE
 router.get("/start/step-2", (req, res) => {
   res.sendFile(path.join(root, "start", "step-2.html"));
 });
 
-router.get("/fof/wb-thankyou", (req, res) => {
-  res.sendFile(path.join(root, "shop", "FoF", "WB-thankyou", "index.html"));
-});
+/* ================= SHOP ================= */
 
-// SHOP
 router.get("/shop", (req, res) => {
   res.sendFile(path.join(root, "shop", "index.html"));
 });
 
-// WORK WITH ME
+/* ================= WORK WITH ME ================= */
+
 router.get("/work-with-me", (req, res) => {
   res.sendFile(path.join(root, "work-with-me", "index.html"));
 });
 
-// TERMS
+/* ================= LEGAL ================= */
+
 router.get("/terms_conditions", (req, res) => {
   res.sendFile(path.join(root, "terms_conditions.html"));
 });
 
-// PRIVACY
 router.get("/privacy_policy", (req, res) => {
   res.sendFile(path.join(root, "privacy_policy.html"));
 });
 
-// Freedom Offer Formula  (بدون تغيير اسم فولدر FoF.html)
+/* ================= FOF ================= */
+
 router.get("/fof", (req, res) => {
   res.sendFile(path.join(root, "shop", "FoF.html", "index.html"));
 });
@@ -57,34 +56,32 @@ router.get("/fof/thank_you", (req, res) => {
   res.sendFile(path.join(root, "shop", "FoF.html", "Thank_you.html"));
 });
 
-
 router.get("/fof/wb_thankyou", (req, res) => {
   res.sendFile(path.join(root, "shop", "FoF.html", "WB-thankyou.html"));
 });
 
+/* ================= FREEDOM ENGINE ================= */
 
-// Freedom Engine
 router.get("/freedom-engine", (req, res) => {
   res.sendFile(path.join(root, "shop", "freedom-engine", "index.html"));
 });
 
-router.get("/freedom-engine/thank_you", (req,res)=>{
-  res.sendFile(
-    path.join(root, "shop", "freedom-engine", "Thank_you.html")
-  );
+router.get("/freedom-engine/thank_you", (req, res) => {
+  res.sendFile(path.join(root, "shop", "freedom-engine", "Thank_you.html"));
 });
 
+/* ================= CONTACT ================= */
 
 router.get("/contact", (req, res) => {
   res.sendFile(path.join(root, "contact", "index.html"));
 });
 
-router.get("/contact/thank_you", (req,res)=>{
-  res.sendFile(path.join(root,"contact","Thank_you.html"));
+router.get("/contact/thank_you", (req, res) => {
+  res.sendFile(path.join(root, "contact", "Thank_you.html"));
 });
 
+/* ================= FOOTER PARTIAL ================= */
 
-// FOOTER PARTIAL
 router.get("/footer", (req, res) => {
   res.sendFile(path.join(root, "footer.html"));
 });
