@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+ --burgundy:#6B1D28;
+ --beige:#F6F1EA;
+ --card:#FCFAF7;
+ --border:rgba(0,0,0,0.08);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+ font-family:Inter,sans-serif;
+ background:var(--beige);
+ color:#000;
+ display:flex;
+ flex-direction:column;
+ min-height:100vh;
+}
+
+/* HEADER */
+header{
+ position:sticky;
+ top:0;
+ background:var(--beige);
+ border-bottom:1px solid var(--border);
+ padding:18px 32px;
+ display:flex;
+ align-items:center;
+ justify-content:flex-start; /* هذا اللي يثبت اللوغو عالشمال */
+}
+
+.logo img{
+ height:42px;
+ cursor:pointer;
+}
+
+/* CENTER */
+.center{
+ flex:1;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ padding:60px 24px;
+}
+
+/* CARD */
+.card{
+ max-width:640px;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:18px;
+ padding:64px 52px;
+ text-align:center;
+ box-shadow:0 18px 40px rgba(0,0,0,0.06);
+}
+
+h1{
+ font-family:"Playfair Display",serif;
+ color:var(--burgundy);
+ font-size:clamp(38px,4vw,46px);
+ margin-bottom:22px;
+}
+
+p{
+ font-size:18px;
+ color:rgba(0,0,0,.65);
+ line-height:1.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a class="logo" href="/">
+    <img src="https://i.ibb.co/Wvt1yxhF/13-png.png" alt="logo">
+  </a>
+</header>
+
+<div class="center">
+  <div class="card">
+    <h1>Thank you for your message</h1>
+    <p>
+      Your inquiry has been received.<br>
+      We’ll get back to you shortly.
+    </p>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script>
+fetch("/footer")
+.then(r=>r.text())
+.then(d=>{
+ document.getElementById("footer-placeholder").innerHTML=d;
+});
+</script>
+
+</body>
+</html>

@@ -79,6 +79,10 @@ router.get("/contact", (req, res) => {
   res.sendFile(path.join(root, "contact", "index.html"));
 });
 
+router.get("/contact/thank_you", (req,res)=>{
+  res.sendFile(path.join(root,"contact","Thank_you.html"));
+});
+
 
 // FOOTER PARTIAL
 router.get("/footer", (req, res) => {
