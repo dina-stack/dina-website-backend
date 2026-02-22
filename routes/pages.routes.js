@@ -72,8 +72,10 @@ router.get("/contact", (req, res) => {
   res.sendFile(path.join(root, "contact", "index.html"));
 });
 
-router.get("/freedom-engine/thank-you",(req,res)=>{
-res.sendFile(path.join(__dirname,"../freedom-engine/thank_you.html"));
+router.get("/thank-you", (req,res)=>{
+  res.sendFile(
+    path.join(__dirname,"../freedom-engine/Thank_you.html")
+  );
 });
 
 // FOOTER PARTIAL
