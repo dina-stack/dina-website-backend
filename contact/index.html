@@ -140,7 +140,7 @@ button:hover{
 
 <h1>I’m here to help!</h1>
 
-<form action="mailto:dina@dinashakir.com" method="POST" enctype="text/plain">
+<form id="contact-form">
 
 <input type="text" name="name" placeholder="Name" required>
 
@@ -168,6 +168,46 @@ fetch("/footer")
  document.getElementById("footer-placeholder").innerHTML=data;
 });
 </script>
+
+<script>
+const form = document.getElementById("contact-form");
+
+form.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+
+  const name = form.elements["name"].value.trim();
+  const email = form.elements["email"].value.trim();
+  const subject = form.elements["subject"].value.trim();
+  const message = form.elements["message"].value.trim();
+
+  try{
+
+    const res = await fetch("/contact-lead",{
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+        subject,
+        message
+      })
+    });
+
+    if(res.ok){
+      alert("Message sent successfully");
+      form.reset();
+    }else{
+      alert("Submission failed");
+    }
+
+  }catch(err){
+    console.error(err);
+    alert("Something went wrong");
+  }
+
+});
+</script>
+
 
 </body>
 </html>
