@@ -424,7 +424,7 @@ header{
         <li><a href="#about" class="nav-scroll">ABOUT</a></li>
         <li><a href="#success-stories" class="nav-scroll">SUCCESS STORIES</a></li>
         <li><a href="/shop">SHOP</a></li>
-        <li><a href="/work-with-me">WORK WITH ME</a></li>
+        <li><a href="#work-with-me-home" class="nav-scroll">WORK WITH ME</a></li>
         <li><a href="#follow">FOLLOW</a></li>
         <li><a href="#contact">CONTACT</a></li>
       </ul>
@@ -511,7 +511,7 @@ header{
           <div class="card-text">
             Work with me inside deeper containers for women who are ready to stop forcing and transform their passion into a thriving revenue engine.
           </div>
-          <a href="/work-with-me" class="card-btn">Grow</a>
+          <a href="#work-with-me-home" class="card-btn nav-scroll">Grow</a>
         </div>
 
       </div>
@@ -1098,42 +1098,25 @@ const track = document.getElementById('carouselTrack');
 
 if(track){
 
-  // duplicate once for seamless loop
   track.innerHTML += track.innerHTML;
 
-  let speed = 0.3;   // السرعة (عدلي الرقم لو بدك)
-  let paused = false;
-
-  function loop(){
-
-    if(!paused){
-      track.scrollLeft += speed;
-
-      // لما يوصل لنص المحتوى يرجع لنفس النقطة بالبداية بدون jump
-      if(track.scrollLeft >= track.scrollWidth/2){
-        track.scrollLeft = 0;
-      }
-    }
-
-    requestAnimationFrame(loop);
-  }
-
-  loop();
-
-  // pause on hover (اختياري بس حلو UX)
-  track.addEventListener('mouseenter',()=> paused=true);
-  track.addEventListener('mouseleave',()=> paused=false);
-
-  // buttons still work
-  window.scrollCarousel = function(dir){
+  function scrollCarousel(dir){
     const card = track.querySelector('.ss-card');
     if(!card) return;
 
-    const gap = 32;
+    const style = window.getComputedStyle(track);
+    const gap = parseInt(style.gap) || 32;
     const move = card.offsetWidth + gap;
 
     track.scrollBy({ left: dir * move, behavior:'smooth' });
   }
+
+  track.addEventListener('scroll',()=>{
+    const half = track.scrollWidth/2;
+    if(track.scrollLeft >= half){
+      track.scrollLeft -= half;
+    }
+  });
 
 }
 </script>
@@ -1143,107 +1126,126 @@ if(track){
 
 
 <style>
+/* ===== SUCCESS STORIES CLEAN PREMIUM ===== */
+
+/* سكشن طبيعي */
 .success-stories{
-    background:#EFE7DC;    /* نفس باقي السكشنز */
-  padding:var(--section-pad) 24px;
+  background:#F6F1EA;
+  padding:100px 24px;
 }
 
+/* مسافة فوق الهيدر */
 .ss-container{
   max-width:1100px;
-  margin:auto;
-  position:relative;
+  margin:0 auto;
+  padding-top:40px;
 }
 
+/* الهيدر فوق بعض */
 .ss-header{
   text-align:center;
   margin-bottom:60px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 
 .ss-section-title{
   font-family:"Playfair Display",serif;
   font-size:clamp(2.2rem,4vw,2.8rem);
   color:#6B1E2B;
-  margin-bottom:16px;
-  text-align:center;
 }
 
 .ss-subheader{
-  font-family:Inter,sans-serif;
+  color:rgba(0,0,0,0.65);
   font-size:1.05rem;
-  max-width:720px;
+  max-width:700px;
   margin:0 auto;
-  color:rgba(0,0,0,0.6);
-  text-align:center;
 }
 
+/* بيرغندي ورا الكاردز فقط */
 .ss-carousel-outer{
   position:relative;
-  width:100%;
+  padding:50px 40px;
+  border-radius:18px;
+  background:
+  linear-gradient(135deg,
+  #6B1E2B 0%,
+  #7f2434 40%,
+  #5a1621 100%);
 }
 
+/* الكاروسيل */
 .ss-carousel-track{
   display:flex;
   gap:32px;
   overflow-x:auto;
   scroll-behavior:smooth;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
   padding-bottom:10px;
 }
 
-.ss-carousel-track::-webkit-scrollbar{
-  display:none;
-}
+.ss-carousel-track::-webkit-scrollbar{ display:none; }
 
-.ss-slide{
-  flex:0 0 auto;
-  padding:0 16px;
-}
+.ss-slide{ flex:0 0 auto; }
 
 .ss-grid{
   display:flex;
   gap:32px;
-  padding:0;
 }
 
-
+/* الكارد حجم موحد */
 .ss-card{
   background:#FCFAF7;
-  border:1px solid rgba(0,0,0,0.08);
-  padding:36px;
+  border-radius:16px;
+  padding:34px;
   width:340px;
-  height:260px;              /* يخلي كل الكروت نفس الارتفاع */
+  height:260px;      /* أهم سطر لتوحيد الحجم */
   flex:0 0 auto;
+
   display:flex;
   flex-direction:column;
   justify-content:flex-start;
+
+  box-shadow:0 20px 40px rgba(0,0,0,0.18);
+  transition:.35s;
 }
 
+.ss-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 28px 60px rgba(0,0,0,0.28);
+}
+
+/* الهيدر داخل الكارد */
 .ss-client-header{
   display:flex;
   align-items:center;
   gap:16px;
-  margin-bottom:24px;
+  margin-bottom:18px;
 }
 
 .ss-image-wrapper{
-  width:60px;height:60px;
+  width:58px;
+  height:58px;
   border-radius:50%;
   overflow:hidden;
   border:1px solid rgba(0,0,0,0.08);
 }
 
-.ss-image-wrapper img{width:100%;height:100%;object-fit:cover;}
+.ss-image-wrapper img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
 .ss-name{
   font-family:"Playfair Display",serif;
-  font-size:1.2rem;
+  font-size:1.15rem;
   color:#6B1E2B;
   display:block;
 }
 
 .ss-role{
-  font-size:.8rem;
+  font-size:.78rem;
   opacity:.6;
   text-transform:uppercase;
 }
@@ -1251,41 +1253,30 @@ if(track){
 .ss-testimonial{
   font-style:italic;
   line-height:1.6;
-  overflow:hidden;
-  display:-webkit-box;
-  -webkit-line-clamp:4;
-line-clamp:4;
-  -webkit-box-orient:vertical;
+  color:#2D2926;
 }
 
-
+/* الأسهم */
 .ss-nav-btn{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  width:46px;height:46px;
+  width:46px;
+  height:46px;
   border-radius:50%;
-  background:#FCFAF7;
-  border:1px solid rgba(0,0,0,0.08);
+  background:#fff;
+  border:1px solid rgba(0,0,0,0.12);
   cursor:pointer;
   font-size:22px;
 }
 
-.ss-prev{left:10px;}
-.ss-next{right:10px;}
+.ss-prev{ left:-20px; }
+.ss-next{ right:-20px; }
 
 @media(max-width:900px){
-  .ss-grid{grid-template-columns:1fr;}
-  .ss-nav-btn{display:none;}
+  .ss-nav-btn{ display:none; }
+  .ss-carousel-outer{ padding:40px 24px; }
 }
-.ss-header{
-  text-align:center;
-  margin-bottom:60px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
 </style>
 
   <!-- Placeholder anchors for nav (we'll build these sections next) -->
@@ -1321,6 +1312,23 @@ document.querySelectorAll('.nav-scroll').forEach(link=>{
   });
 
 });
+</script>
+
+<script>
+const ssCards = document.querySelectorAll('.ss-card');
+
+function revealSS(){
+  const trigger = window.innerHeight * 0.88;
+
+  ssCards.forEach(card=>{
+    if(card.getBoundingClientRect().top < trigger){
+      card.classList.add('show');
+    }
+  });
+}
+
+window.addEventListener('scroll', revealSS);
+revealSS();
 </script>
 
 <section class="work-section" id="work-with-me-home">
